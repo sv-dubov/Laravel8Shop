@@ -38,3 +38,6 @@ Route::get('/user/logout', [MainUserController::class, 'logout'])->name('user.lo
 Route::get('/user/profile', [MainUserController::class, 'profile'])->name('user.profile');
 Route::get('/user/profile/edit', [MainUserController::class, 'edit'])->name('profile.edit');
 Route::post('/user/profile/store', [MainUserController::class, 'store'])->name('profile.store');
+Route::get('/user/password/view', [MainUserController::class, 'passwordView'])->name('user.password.view');
+Route::post('/user/profile/update', [MainUserController::class, 'passwordUpdate'])->name('password.update');
+
