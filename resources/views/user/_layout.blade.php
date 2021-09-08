@@ -7,7 +7,7 @@
     <meta name="author" content="">
     <link rel="icon" href="{{ asset('user/panel/assets/images/favicon.png') }}">
     <!--Page title-->
-    <title>Admin easy Learning</title>
+    <title>Admin User</title>
     <!--bootstrap-->
     <link rel="stylesheet" href="{{ asset('user/panel/assets/css/bootstrap.min.css') }}">
     <!--font awesome-->
@@ -257,7 +257,7 @@
                         <li><a href="#"><span><i class="fas fa-user"></i></span> User Profile</a></li>
                         <li><a href=" "><span><i class="fas fa-cogs"></i></span> Password Change</a></li>
                         <li>
-                            <a href=" "><span><i class="fas fa-unlock-alt"></i></span> Logout</a></li>
+                            <a href="{{ route('user.logout') }}"><span><i class="fas fa-unlock-alt"></i></span> Logout</a></li>
                     </ul>
                 </div>
             </li>
