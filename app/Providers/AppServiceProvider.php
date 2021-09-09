@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Admin;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -23,6 +24,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        view()->composer('admin.partials._header', function($view){
+            $view->with('admin', Admin::all());
+        });
     }
 }

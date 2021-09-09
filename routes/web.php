@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\MainAdminController;
 use App\Http\Controllers\MainUserController;
 use Illuminate\Support\Facades\Route;
 
@@ -26,13 +27,16 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin:admin']], function ()
 
 Route::middleware(['auth:sanctum,admin', 'verified'])->get('/admin/dashboard', function () {
     return view('admin.index');
-})->name('dashboard');
+})->name('admin.dashboard');
 
 Route::middleware(['auth:sanctum,web', 'verified'])->get('/dashboard', function () {
     return view('user.index');
 })->name('dashboard');
 
 Route::get('/admin/logout', [AdminController::class, 'destroy'])->name('admin.logout');
+Route::get('/admin/profile/{id}', [MainAdminController::class, 'profile'])->name('admin.profile');
+Route::get('/admin/profile/edit/{id}', [MainAdminController::class, 'edit'])->name('admin.profile.edit');
+Route::post('/admin/profile/store/{id}', [MainAdminController::class, 'store'])->name('admin.profile.store');
 
 Route::get('/user/logout', [MainUserController::class, 'logout'])->name('user.logout');
 Route::get('/user/profile', [MainUserController::class, 'profile'])->name('user.profile');
