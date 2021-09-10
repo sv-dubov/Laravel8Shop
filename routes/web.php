@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\MainAdminController;
@@ -41,6 +42,7 @@ Route::post('/admin/profile/store/{id}', [MainAdminController::class, 'store'])-
 
 Route::group(['prefix' => 'admin'], function () {
     Route::resource('/categories', CategoryController::class)->except(['create', 'show']);
+    Route::resource('/brands', BrandController::class)->except(['create', 'show']);
 });
 
 Route::get('/user/logout', [MainUserController::class, 'logout'])->name('user.logout');
