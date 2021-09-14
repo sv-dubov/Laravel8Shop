@@ -9,7 +9,27 @@ class Category extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'category_name'
-    ];
+    protected $fillable = ['parent_id', 'category_name'];
+
+    public function parent()
+    {
+        return $this->belongsTo(static::class, 'parent_id', 'id');
+    }
+
+    public function children()
+    {
+        return $this->hasMany(static::class, 'parent_id', 'id');
+    }
+
+    public function edit($fields)
+    {
+        $this->fill($fields);
+        $this->save();
+    }
+
+    public function remove()
+    {
+        $this->children()->delete();
+        $this->delete();
+    }
 }

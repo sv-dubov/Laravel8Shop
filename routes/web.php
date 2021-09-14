@@ -41,7 +41,8 @@ Route::get('/admin/profile/edit/{id}', [MainAdminController::class, 'edit'])->na
 Route::post('/admin/profile/store/{id}', [MainAdminController::class, 'store'])->name('admin.profile.store');
 
 Route::group(['prefix' => 'admin'], function () {
-    Route::resource('/categories', CategoryController::class)->except(['create', 'show']);
+    //Route::resource('/categories', CategoryController::class)->except(['create', 'show']);
+    Route::resource('/categories', CategoryController::class);
     Route::resource('/brands', BrandController::class)->except(['create', 'show']);
 });
 

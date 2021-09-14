@@ -8,28 +8,25 @@
         </div><!-- sl-page-title -->
         <div class="card pd-20 pd-sm-40">
             <h6 class="card-body-title">Categories list
-                {{--<a href="#" class="btn btn-sm btn-warning" style="float: right;" data-toggle="modal"
-                   data-target="#modaldemo3">Add new</a>--}}
-                <a href="{{route('categories.create')}}" class="btn btn-sm btn-warning" style="float: right;">
-                    Add new
+                <a href="{{route('categories.create', ['parent' => $category->id])}}" class="btn btn-sm btn-warning"
+                   style="float: right;">
+                    Add subcategory
                 </a>
             </h6>
             <div class="table-wrapper">
                 <table id="datatable1" class="table display responsive nowrap">
                     <thead>
                     <tr>
-                        <th class="wd-5p">№</th>
-                        <th class="wd-25p">Category name</th>
+                        <th class="wd-15p">№</th>
+                        <th class="wd-15p">Category name</th>
                         <th class="wd-10p">Edit category</th>
                         <th class="wd-10p">Delete category</th>
                     </tr>
                     </thead>
                     <tbody>
-                    @include('admin.errors')
-                    @foreach($category as $key => $row)
+                    @foreach($categories as $key => $row)
                         <tr>
                             <td>{{ $key + 1 }}</td>
-                            {{--<td>{{ $row->category_name }}</td>--}}
                             <td><a href="{{ route('categories.show', $row) }}">{{ $row->category_name }}</a></td>
                             <td>
                                 <a href="{{ route('categories.edit', $row) }}"

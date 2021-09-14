@@ -15,47 +15,62 @@ class CategoryController extends Controller
 
     public function index()
     {
-        $category = Category::all();
+        //$category = Category::where('parent_id', null)->get();
+        $category = Category::whereNull('parent_id')->get();
         return view('admin.category.index', compact('category'));
+    }
+
+    public function show(Category $category)
+    {
+        $categories = Category::where('parent_id', $category->id)->get();
+        return view('admin.category.show', compact('category', 'categories'));
+    }
+
+    public function create(Request $request)
+    {
+        $parent = null;
+        if ($request->get('parent')) {
+            $parent = Category::findOrFail($request->get('parent'));
+        }
+        return view('admin.category.create', compact('parent'));
     }
 
     public function store(Request $request)
     {
-        $validateData = $request->validate([
-            'category_name' => 'required|unique:categories|max:255',
+        $this->validate($request, [
+            'category_name' => 'required|max:255',
+            'parent' => 'nullable|exists:categories,id'
         ]);
 
-        //$data = array();
-        //$data['category_name']=$request->category_name;
-        //DB::table('categories')->insert($data);
+        $category = Category::create([
+            'category_name' => $request['category_name'],
+            'parent_id' => $request['parent'],
+        ]);
 
-        $category = new Category();
-        $category->category_name = $request->category_name;
-        $category->save();
-
-        return redirect()->route('categories.index');
+        return redirect()->route('categories.index', $category);
     }
 
-    public function edit($id)
+    public function edit(Category $category)
     {
-        $category = Category::find($id);
         return view('admin.category.edit', compact('category'));
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, Category $category)
     {
-        $validateData = $request->validate([
-            'category_name' => 'required|unique:categories|max:255',
+        $request->validate([
+            'category_name' => 'required|max:255'
         ]);
 
-        $category = Category::find($id);
-        $category->update($validateData);
+        $category->edit($request->all());
         return redirect()->route('categories.index');
     }
 
-    public function destroy($id)
+    public function destroy(Category $category)
     {
-        Category::find($id)->delete();
+        if ($category->children->count()) {
+            return back()->withErrors('Page contains subcategory(-ies). Please, remove subcategory(-ies) at first');
+        }
+        $category->remove();
         return redirect()->route('categories.index');
     }
 }
