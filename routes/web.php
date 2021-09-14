@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\CouponController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\MainAdminController;
 use App\Http\Controllers\MainUserController;
@@ -41,9 +42,9 @@ Route::get('/admin/profile/edit/{id}', [MainAdminController::class, 'edit'])->na
 Route::post('/admin/profile/store/{id}', [MainAdminController::class, 'store'])->name('admin.profile.store');
 
 Route::group(['prefix' => 'admin'], function () {
-    //Route::resource('/categories', CategoryController::class)->except(['create', 'show']);
     Route::resource('/categories', CategoryController::class);
     Route::resource('/brands', BrandController::class)->except(['create', 'show']);
+    Route::resource('/coupons', CouponController::class)->except(['create', 'show']);
 });
 
 Route::get('/user/logout', [MainUserController::class, 'logout'])->name('user.logout');

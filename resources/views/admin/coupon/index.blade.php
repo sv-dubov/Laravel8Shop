@@ -4,10 +4,10 @@
 
     <div class="sl-pagebody">
         <div class="sl-page-title">
-            <h5>Brand list</h5>
+            <h5>Coupons list</h5>
         </div><!-- sl-page-title -->
         <div class="card pd-20 pd-sm-40">
-            <h6 class="card-body-title">Brand list
+            <h6 class="card-body-title">Coupons list
                 <a href="#" class="btn btn-sm btn-warning" style="float: right;" data-toggle="modal"
                    data-target="#modaldemo3">Add new</a>
             </h6>
@@ -16,24 +16,25 @@
                     <thead>
                     <tr>
                         <th class="wd-5p">№</th>
-                        <th class="wd-15p">Brand name</th>
-                        <th class="wd-20p">Brand logo</th>
-                        <th class="wd-15p">Edit brand</th>
-                        <th class="wd-15p">Delete brand</th>
+                        <th class="wd-25p">Coupon code</th>
+                        <th class="wd-25p">Discount</th>
+                        <th class="wd-10p">Edit coupon</th>
+                        <th class="wd-10p">Delete coupon</th>
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($brand as $key => $row)
+                    @include('admin.errors')
+                    @foreach($coupon as $key => $row)
                         <tr>
                             <td>{{ $key + 1 }}</td>
-                            <td>{{ $row->brand_name }}</td>
-                            <td><img src="{{$row->getLogo()}}" height="70px;" width="80px;"></td>
+                            <td>{{ $row->coupon }}</td>
+                            <td>{{ $row->discount }}%</td>
                             <td>
-                                <a href="{{ route('brands.edit', $row->id) }}"
+                                <a href="{{ route('coupons.edit', $row) }}"
                                    class="btn btn-sm btn-info">Edit</a>
                             </td>
                             <td>
-                                <form action="{{ route('brands.destroy', $row->id) }}" method="POST">
+                                <form action="{{ route('coupons.destroy', $row) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
                                     <button class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')"
@@ -53,24 +54,24 @@
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content tx-size-sm">
                 <div class="modal-header pd-x-20">
-                    <h6 class="tx-14 mg-b-0 tx-uppercase tx-inverse tx-bold">Brand Add</h6>
+                    <h6 class="tx-14 mg-b-0 tx-uppercase tx-inverse tx-bold">Add Coupon</h6>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 @include('admin.errors')
-                <form method="post" action="{{ route('brands.store') }}" enctype="multipart/form-data">
+                <form method="post" action="{{ route('coupons.store') }}">
                     @csrf
                     <div class="modal-body pd-20">
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Brand name</label>
+                            <label for="exampleInputEmail1">Coupon code</label>
                             <input type="text" class="form-control" id="exampleInputEmail1"
-                                   aria-describedby="emailHelp" placeholder="Brand name" name="brand_name">
+                                   aria-describedby="emailHelp" placeholder="Code" name="coupon">
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Brand logo</label>
-                            <input type="file" class="form-control" aria-describedby="emailHelp"
-                                   placeholder="Brand logo" name="brand_logo">
+                            <label for="exampleInputEmail1">Coupon discount (%)</label>
+                            <input type="text" class="form-control" id="exampleInputEmail1"
+                                   aria-describedby="emailHelp" placeholder="Discount" name="discount">
                         </div>
                     </div><!-- modal-body -->
                     <div class="modal-footer">
