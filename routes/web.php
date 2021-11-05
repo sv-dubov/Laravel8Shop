@@ -3,7 +3,9 @@
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\CouponController;
+use App\Http\Controllers\Admin\NewsletterController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\FrontController;
 use App\Http\Controllers\MainAdminController;
 use App\Http\Controllers\MainUserController;
 use Illuminate\Support\Facades\Route;
@@ -22,6 +24,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('pages.index');
 });
+
+//Newsletter Front
+Route::post('newsletter/store', [FrontController::class, 'storeNewsletter'])->name('newsletter.store');
 
 Route::group(['prefix' => 'admin', 'middleware' => ['admin:admin']], function () {
     Route::get('/login', [AdminController::class, 'loginForm']);
@@ -45,6 +50,8 @@ Route::group(['prefix' => 'admin'], function () {
     Route::resource('/categories', CategoryController::class);
     Route::resource('/brands', BrandController::class)->except(['create', 'show']);
     Route::resource('/coupons', CouponController::class)->except(['create', 'show']);
+    Route::get('/newsletters', [NewsletterController::class, 'index'])->name('newsletters.index');
+    Route::get('/newsletters/{id}', [NewsletterController::class, 'destroy'])->name('newsletters.destroy');
 });
 
 Route::get('/user/logout', [MainUserController::class, 'logout'])->name('user.logout');

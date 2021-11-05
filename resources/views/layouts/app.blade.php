@@ -66,6 +66,13 @@
 
         <!-- Header Main -->
 
+        @if (session('status'))
+            <div class="alert alert-success">
+                <button type="button" class="close" data-dismiss="alert">×</button>
+                {{ session('status') }}
+            </div>
+        @endif
+
         <div class="header_main">
             <div class="container">
                 <div class="row">
