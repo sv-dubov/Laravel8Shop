@@ -11,6 +11,11 @@ class Category extends Model
 
     protected $fillable = ['parent_id', 'category_name'];
 
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
+
     public function parent()
     {
         return $this->belongsTo(static::class, 'parent_id', 'id');
@@ -19,6 +24,11 @@ class Category extends Model
     public function children()
     {
         return $this->hasMany(static::class, 'parent_id', 'id');
+    }
+
+    public function allChildren()
+    {
+        return $this->children()->with('allChildren');
     }
 
     public function edit($fields)

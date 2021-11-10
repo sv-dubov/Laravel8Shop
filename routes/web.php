@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\CouponController;
 use App\Http\Controllers\Admin\NewsletterController;
+use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\MainAdminController;
@@ -52,6 +53,15 @@ Route::group(['prefix' => 'admin'], function () {
     Route::resource('/coupons', CouponController::class)->except(['create', 'show']);
     Route::get('/newsletters', [NewsletterController::class, 'index'])->name('newsletters.index');
     Route::get('/newsletters/{id}', [NewsletterController::class, 'destroy'])->name('newsletters.destroy');
+    Route::get('/products/all', [ProductController::class, 'index'])->name('products.index');
+    Route::get('/products/add', [ProductController::class, 'create'])->name('products.create');
+    Route::post('/products/store', [ProductController::class, 'store'])->name('products.store');
+    Route::get('/products/show/{id}', [ProductController::class, 'show'])->name('products.show');
+    Route::get('/products/edit/{id}', [ProductController::class, 'edit'])->name('products.edit');
+    Route::post('/products/update/{id}', [ProductController::class, 'update'])->name('products.update');
+    Route::post('/products/images/update/{id}', [ProductController::class, 'updateImages'])->name('products.update.images');
+    Route::get('/products/{id}', [ProductController::class, 'destroy'])->name('products.destroy');
+    Route::get('/products/status/{id}', [ProductController::class, 'status'])->name('products.status');
 });
 
 Route::get('/user/logout', [MainUserController::class, 'logout'])->name('user.logout');

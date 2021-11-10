@@ -15,6 +15,11 @@ class Brand extends Model
         'brand_name', 'brand_logo'
     ];
 
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
+
     public static function add($fields)
     {
         $brand = new static;

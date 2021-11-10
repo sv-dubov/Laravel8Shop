@@ -139,6 +139,12 @@ return [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
+        'category_id' => [
+            'required' => 'You must choose the category from the list',
+        ],
+        'brand_id' => [
+            'required' => 'You must choose the brand from the list',
+        ],
     ],
 
     /*
