@@ -4,43 +4,27 @@
     <div class="container">
         <div class="row">
             <div class="col">
-
                 <div class="main_nav_content d-flex flex-row">
-
                     <!-- Categories Menu -->
-
                     <div class="cat_menu_container">
                         <div class="cat_menu_title d-flex flex-row align-items-center justify-content-start">
                             <div class="cat_burger"><span></span><span></span><span></span></div>
-                            <div class="cat_menu_text">categories</div>
+                            <div class="cat_menu_text">Categories</div>
                         </div>
-
                         <ul class="cat_menu">
-                            <li><a href="#">Computers & Laptops <i class="fas fa-chevron-right ml-auto"></i></a></li>
-                            <li><a href="#">Cameras & Photos<i class="fas fa-chevron-right"></i></a></li>
-                            <li class="hassubs">
-                                <a href="#">Hardware<i class="fas fa-chevron-right"></i></a>
-                                <ul>
+                            @foreach($categories as $parent)
+                                @if($parent->parent_id == NULL)
                                     <li class="hassubs">
-                                        <a href="#">Menu Item<i class="fas fa-chevron-right"></i></a>
-                                        <ul>
-                                            <li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-                                            <li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-                                            <li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-                                            <li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-                                        </ul>
+                                        @if($parent->allChildren->isNotEmpty())
+                                            <a href="{{ url('categories/'.$parent->id) }}">{{ $parent->category_name }}
+                                                <i class="fas fa-chevron-right"></i></a>
+                                            @include('layouts._category-child', ['allChildren' => $parent->allChildren])
+                                        @elseif($parent->allChildren->isEmpty())
+                                            <a href="{{ url('categories/'.$parent->id) }}">{{ $parent->category_name }}</a>
+                                        @endif
                                     </li>
-                                    <li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-                                    <li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-                                    <li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-                                </ul>
-                            </li>
-                            <li><a href="#">Smartphones & Tablets<i class="fas fa-chevron-right"></i></a></li>
-                            <li><a href="#">TV & Audio<i class="fas fa-chevron-right"></i></a></li>
-                            <li><a href="#">Gadgets<i class="fas fa-chevron-right"></i></a></li>
-                            <li><a href="#">Car Electronics<i class="fas fa-chevron-right"></i></a></li>
-                            <li><a href="#">Video Games & Consoles<i class="fas fa-chevron-right"></i></a></li>
-                            <li><a href="#">Accessories<i class="fas fa-chevron-right"></i></a></li>
+                                @endif
+                            @endforeach
                         </ul>
                     </div>
 
@@ -108,7 +92,6 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
@@ -121,9 +104,7 @@
     <div class="container">
         <div class="row">
             <div class="col">
-
                 <div class="page_menu_content">
-
                     <div class="page_menu_search">
                         <form action="#">
                             <input type="search" required="required" class="page_menu_search_input" placeholder="Search for products...">
@@ -190,7 +171,6 @@
                         <li class="page_menu_item"><a href="blog.html">blog<i class="fa fa-angle-down"></i></a></li>
                         <li class="page_menu_item"><a href="contact.html">contact<i class="fa fa-angle-down"></i></a></li>
                     </ul>
-
                     <div class="menu_contact">
                         <div class="menu_contact_item"><div class="menu_contact_icon"><img src="images/phone_white.png" alt=""></div>+38 068 005 3570</div>
                         <div class="menu_contact_item"><div class="menu_contact_icon"><img src="images/mail_white.png" alt=""></div><a href="mailto:fastsales@gmail.com">fastsales@gmail.com</a></div>
