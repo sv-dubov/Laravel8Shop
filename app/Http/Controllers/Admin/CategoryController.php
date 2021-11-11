@@ -46,8 +46,7 @@ class CategoryController extends Controller
             'category_name' => $request['category_name'],
             'parent_id' => $request['parent'],
         ]);
-
-        return redirect()->route('categories.index', $category);
+        return redirect()->back()->with('status', 'Category was added successfully!');
     }
 
     public function edit(Category $category)
@@ -60,9 +59,8 @@ class CategoryController extends Controller
         $request->validate([
             'category_name' => 'required|max:255'
         ]);
-
         $category->edit($request->all());
-        return redirect()->route('categories.index');
+        return redirect()->back()->with('status', 'Category was updated successfully!');
     }
 
     public function destroy(Category $category)

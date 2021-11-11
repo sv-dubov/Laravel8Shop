@@ -3,11 +3,19 @@
 @section('admin')
 
     <div class="sl-pagebody">
+        @if (session('status'))
+            <div class="alert alert-success">
+                <button type="button" class="close" data-dismiss="alert">×</button>
+                {{ session('status') }}
+            </div>
+        @endif
         <div class="sl-page-title">
             <h5>Category/subcategory create</h5>
         </div><!-- sl-page-title -->
         <div class="card pd-20 pd-sm-40">
-            <h6 class="card-body-title">Add category/subcategory</h6>
+            <h6 class="card-body-title">Add category/subcategory
+                <a href="{{ route('categories.index')}}" class="btn btn-success btn-sm pull-right"> All categories</a>
+            </h6>
             <div class="table-wrapper">
                 @include('admin.errors')
                 <form method="POST"
