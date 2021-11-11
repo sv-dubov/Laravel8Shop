@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Models\Admin;
 use App\Models\Admin\Category;
+use App\Models\Admin\Product;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -31,6 +32,7 @@ class AppServiceProvider extends ServiceProvider
 
         view()->composer('layouts.menubar', function($view){
             $view->with('categories', Category::with('allChildren')->whereNull('parent_id')->orderBy('category_name', 'asc')->get());
+            $view->with('mainSliderProduct', Product::where('main_slider', '1')->latest()->first());
         });
 
         view()->composer('layouts.app', function($view){
