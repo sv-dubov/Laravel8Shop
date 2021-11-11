@@ -36,8 +36,8 @@
                             <td>{{ $row->product_name }}</td>
                             <td>{{ $row->product_code }}</td>
                             <td><img src="{{ URL::to($row->image_one) }}" height="50px;" width="50px;"></td>
-                            <td>{{ $row->category_name }}</td>
-                            <td>{{ $row->brand_name }}</td>
+                            <td>{{ $row->getCategoryTitle() }}</td>
+                            <td>{{ $row->getBrandTitle() }}</td>
                             <td>{{ $row->product_quantity }}</td>
                             <td>
                                 @if($row->status == 1)
