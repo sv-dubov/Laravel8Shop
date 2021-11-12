@@ -9,6 +9,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\MainAdminController;
 use App\Http\Controllers\MainUserController;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,6 +26,14 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('pages.index');
 });
+
+Route::get('/email/verify', function () {
+    return view('auth.verify-email');
+})->middleware('auth')->name('verification.notice');
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+    $request->fulfill();
+    return redirect('/dashboard');
+})->middleware(['auth', 'signed'])->name('verification.verify');
 
 //Newsletter Front
 Route::post('newsletter/store', [FrontController::class, 'storeNewsletter'])->name('newsletter.store');
@@ -65,9 +74,9 @@ Route::group(['prefix' => 'admin'], function () {
 });
 
 Route::get('/user/logout', [MainUserController::class, 'logout'])->name('user.logout');
-Route::get('/user/profile', [MainUserController::class, 'profile'])->name('user.profile');
-Route::get('/user/profile/edit', [MainUserController::class, 'edit'])->name('profile.edit');
-Route::post('/user/profile/store', [MainUserController::class, 'store'])->name('profile.store');
-Route::get('/user/password/view', [MainUserController::class, 'passwordView'])->name('user.password.view');
-Route::post('/user/profile/update', [MainUserController::class, 'passwordUpdate'])->name('password.update');
+Route::get('/user/profile', [MainUserController::class, 'profile'])->name('user.profile')->middleware('verified');
+Route::get('/user/profile/edit', [MainUserController::class, 'edit'])->name('profile.edit')->middleware('verified');
+Route::post('/user/profile/store', [MainUserController::class, 'store'])->name('profile.store')->middleware('verified');
+Route::get('/user/password/view', [MainUserController::class, 'passwordView'])->name('user.password.view')->middleware('verified');
+Route::post('/user/profile/update', [MainUserController::class, 'passwordUpdate'])->name('password.update')->middleware('verified');
 

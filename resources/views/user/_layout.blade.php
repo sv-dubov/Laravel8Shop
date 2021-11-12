@@ -7,7 +7,7 @@
     <meta name="author" content="">
     <link rel="icon" href="{{ asset('user/panel/assets/images/favicon.png') }}">
     <!--Page title-->
-    <title>Admin User</title>
+    <title>User</title>
     <!--bootstrap-->
     <link rel="stylesheet" href="{{ asset('user/panel/assets/css/bootstrap.min.css') }}">
     <!--font awesome-->
@@ -32,10 +32,9 @@
     <header class="header_area">
         <!-- logo -->
         <div class="sidebar_logo">
-            <a href="index.html">
-                <img src="{{ asset('user/panel/assets/images/logo.png') }}" alt="" class="img-fluid logo1">
-                <img src="{{ asset('user/panel/assets/images/logo_small.png') }}" alt="" class="img-fluid logo2">
-            </a>
+            <div class="dropdown_header">
+                <p>Hi, {{ Auth::user()->name }}</p>
+            </div>
         </div>
         <div class="sidebar_btn">
             <button class="sidbar-toggler-btn"><i class="fas fa-bars"></i></button>
@@ -251,7 +250,7 @@
             <li><a data-toggle="dropdown" href="#"><i class="far fa-user"></i></a>
                 <div class="user_item dropdown-menu dropdown-menu-right">
                     <div class="admin">
-                        <a href="#" class="user_link"><img src="panel/assets/images/admin.png" alt=""></a>
+                        <a href="#" class="user_link"><img src="{{ asset( Auth::user()->getPhoto()) }}" alt=""></a>
                     </div>
                     <ul>
                         <li><a href="{{ route('user.profile') }}"><span><i class="fas fa-user"></i></span> User Profile</a></li>
