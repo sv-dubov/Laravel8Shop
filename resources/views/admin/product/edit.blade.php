@@ -237,7 +237,7 @@
                         <img src="{{ URL::to($product->image_three) }}" style="width: 80px; height: 80px;">
                     </div>
                 </div><br>
-                <button type="submit" class="btn btn-warning mg-r-5">Update images</button>
+                <button type="submit" class="btn btn-warning mg-r-5">Update image</button>
             </form>
         </div><!-- card -->
     </div><!-- sl-pagebody -->

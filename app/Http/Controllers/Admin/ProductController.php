@@ -77,17 +77,17 @@ class ProductController extends Controller
         if ($image_one && $image_two && $image_three) {
             $image_one_name = hexdec(uniqid()) . '.' . $image_one->getClientOriginalExtension();
             $path_one = public_path('upload/products_images/' . $image_one_name);
-            Image::make($image_one->getRealPath())->resize(300, 300)->save($path_one);
+            Image::make($image_one->getRealPath())->resize(300, 400)->save($path_one);
             $data['image_one'] = 'upload/products_images/' . $image_one_name;
 
             $image_two_name = hexdec(uniqid()) . '.' . $image_two->getClientOriginalExtension();
             $path_two = public_path('upload/products_images/' . $image_two_name);
-            Image::make($image_two->getRealPath())->resize(300, 300)->save($path_two);
+            Image::make($image_two->getRealPath())->resize(300, 400)->save($path_two);
             $data['image_two'] = 'upload/products_images/' . $image_two_name;
 
             $image_three_name = hexdec(uniqid()) . '.' . $image_three->getClientOriginalExtension();
             $path_three = public_path('upload/products_images/' . $image_three_name);
-            Image::make($image_three->getRealPath())->resize(300, 300)->save($path_three);
+            Image::make($image_three->getRealPath())->resize(300, 400)->save($path_three);
             $data['image_three'] = 'upload/products_images/' . $image_three_name;
 
             $product = DB::table('products')->insert($data);
@@ -162,7 +162,7 @@ class ProductController extends Controller
             unlink($old_one);
             $image_name = hexdec(uniqid()) . '.' . $image_one->getClientOriginalExtension();
             $path_one = public_path('upload/products_images/' . $image_name);
-            Image::make($image_one->getRealPath())->resize(300, 300)->save($path_one);
+            Image::make($image_one->getRealPath())->resize(300, 400)->save($path_one);
             $data['image_one'] = 'upload/products_images/' . $image_name;
             DB::table('products')->where('id', $id)->update($data);
             return redirect()->back()->with('status', 'Image One was updated successfully!');
@@ -172,7 +172,7 @@ class ProductController extends Controller
             unlink($old_two);
             $image_name = hexdec(uniqid()) . '.' . $image_two->getClientOriginalExtension();
             $path_two = public_path('upload/products_images/' . $image_name);
-            Image::make($image_two->getRealPath())->resize(300, 300)->save($path_two);
+            Image::make($image_two->getRealPath())->resize(300, 400)->save($path_two);
             $data['image_two'] = 'upload/products_images/' . $image_name;
             DB::table('products')->where('id', $id)->update($data);
             return redirect()->back()->with('status', 'Image Two was updated successfully!');
@@ -182,7 +182,7 @@ class ProductController extends Controller
             unlink($old_three);
             $image_name = hexdec(uniqid()) . '.' . $image_three->getClientOriginalExtension();
             $path_three = public_path('upload/products_images/' . $image_name);
-            Image::make($image_three->getRealPath())->resize(300, 300)->save($path_three);
+            Image::make($image_three->getRealPath())->resize(300, 400)->save($path_three);
             $data['image_three'] = 'upload/products_images/' . $image_name;
             DB::table('products')->where('id', $id)->update($data);
             return redirect()->back()->with('status', 'Image Three was updated successfully!');

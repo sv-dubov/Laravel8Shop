@@ -38,5 +38,12 @@ class AppServiceProvider extends ServiceProvider
         view()->composer('layouts.app', function($view){
             $view->with('parentCategories', Category::whereNull('parent_id')->orderBy('category_name', 'asc')->get());
         });
+
+        view()->composer('pages.index', function($view){
+            $view->with('featuredProducts', Product::where('status', '1')->orderBy('id', 'desc')->limit(8)->get());
+            $view->with('trendProducts', Product::where('status', '1')->where('trend', '1')->orderBy('id', 'desc')->limit(8)->get());
+            $view->with('bestProducts', Product::where('status', '1')->where('best_rated', '1')->orderBy('id', 'desc')->limit(8)->get());
+            $view->with('hotDealProducts', Product::where('status', '1')->where('hot_deal', '1')->orderBy('id', 'desc')->limit(3)->get());
+        });
     }
 }
