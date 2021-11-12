@@ -342,44 +342,14 @@
                         <div class="owl-carousel owl-theme popular_categories_slider">
 
                             <!-- Popular Categories Item -->
+                            @foreach($parentCategories as $row)
                             <div class="owl-item">
                                 <div class="popular_category d-flex flex-column align-items-center justify-content-center">
                                     <div class="popular_category_image"><img src="{{ asset ('front/images/popular_1.png') }}" alt=""></div>
-                                    <div class="popular_category_text">Smartphones & Tablets</div>
+                                    <div class="popular_category_text">{{ $row->category_name }}</div>
                                 </div>
                             </div>
-
-                            <!-- Popular Categories Item -->
-                            <div class="owl-item">
-                                <div class="popular_category d-flex flex-column align-items-center justify-content-center">
-                                    <div class="popular_category_image"><img src="{{ asset ('front/images/popular_2.png') }}" alt=""></div>
-                                    <div class="popular_category_text">Computers & Laptops</div>
-                                </div>
-                            </div>
-
-                            <!-- Popular Categories Item -->
-                            <div class="owl-item">
-                                <div class="popular_category d-flex flex-column align-items-center justify-content-center">
-                                    <div class="popular_category_image"><img src="{{ asset ('front/images/popular_3.png') }}" alt=""></div>
-                                    <div class="popular_category_text">Gadgets</div>
-                                </div>
-                            </div>
-
-                            <!-- Popular Categories Item -->
-                            <div class="owl-item">
-                                <div class="popular_category d-flex flex-column align-items-center justify-content-center">
-                                    <div class="popular_category_image"><img src="{{ asset ('front/images/popular_4.png') }}" alt=""></div>
-                                    <div class="popular_category_text">Video Games & Consoles</div>
-                                </div>
-                            </div>
-
-                            <!-- Popular Categories Item -->
-                            <div class="owl-item">
-                                <div class="popular_category d-flex flex-column align-items-center justify-content-center">
-                                    <div class="popular_category_image"><img src="{{ asset ('front/images/popular_5.png') }}" alt=""></div>
-                                    <div class="popular_category_text">Accessories</div>
-                                </div>
-                            </div>
+                            @endforeach
 
                         </div>
                     </div>
@@ -399,79 +369,32 @@
             <div class="owl-carousel owl-theme banner_2_slider">
 
                 <!-- Banner 2 Slider Item -->
+                @foreach($midSliderProducts as $row)
                 <div class="owl-item">
                     <div class="banner_2_item">
                         <div class="container fill_height">
                             <div class="row fill_height">
                                 <div class="col-lg-4 col-md-6 fill_height">
                                     <div class="banner_2_content">
-                                        <div class="banner_2_category">Laptops</div>
-                                        <div class="banner_2_title">MacBook Air 13</div>
-                                        <div class="banner_2_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas fermentum laoreet.</div>
-                                        <div class="rating_r rating_r_4 banner_2_rating"><i></i><i></i><i></i><i></i><i></i></div>
+                                        <div class="banner_2_category">
+                                            <h4>{{ $row->getCategoryTitle() }}</h4>
+                                        </div>
+                                        <div class="banner_2_title">{{ $row->product_name }}</div>
+                                        <div class="banner_2_text">{!! $row->product_details !!}</div>
                                         <div class="button banner_2_button"><a href="#">Explore</a></div>
                                     </div>
 
                                 </div>
                                 <div class="col-lg-8 col-md-6 fill_height">
                                     <div class="banner_2_image_container">
-                                        <div class="banner_2_image"><img src="{{ asset ('front/images/banner_2_product.png') }}" alt=""></div>
+                                        <div class="banner_2_image"><img src="{{ asset ($row->image_one) }}" style="width: 250px; height: 340px;" alt=""></div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
-                <!-- Banner 2 Slider Item -->
-                <div class="owl-item">
-                    <div class="banner_2_item">
-                        <div class="container fill_height">
-                            <div class="row fill_height">
-                                <div class="col-lg-4 col-md-6 fill_height">
-                                    <div class="banner_2_content">
-                                        <div class="banner_2_category">Laptops</div>
-                                        <div class="banner_2_title">MacBook Air 13</div>
-                                        <div class="banner_2_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas fermentum laoreet.</div>
-                                        <div class="rating_r rating_r_4 banner_2_rating"><i></i><i></i><i></i><i></i><i></i></div>
-                                        <div class="button banner_2_button"><a href="#">Explore</a></div>
-                                    </div>
-
-                                </div>
-                                <div class="col-lg-8 col-md-6 fill_height">
-                                    <div class="banner_2_image_container">
-                                        <div class="banner_2_image"><img src="{{ asset ('front/images/banner_2_product.png') }}" alt=""></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Banner 2 Slider Item -->
-                <div class="owl-item">
-                    <div class="banner_2_item">
-                        <div class="container fill_height">
-                            <div class="row fill_height">
-                                <div class="col-lg-4 col-md-6 fill_height">
-                                    <div class="banner_2_content">
-                                        <div class="banner_2_category">Laptops</div>
-                                        <div class="banner_2_title">MacBook Air 13</div>
-                                        <div class="banner_2_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas fermentum laoreet.</div>
-                                        <div class="rating_r rating_r_4 banner_2_rating"><i></i><i></i><i></i><i></i><i></i></div>
-                                        <div class="button banner_2_button"><a href="#">Explore</a></div>
-                                    </div>
-
-                                </div>
-                                <div class="col-lg-8 col-md-6 fill_height">
-                                    <div class="banner_2_image_container">
-                                        <div class="banner_2_image"><img src="{{ asset ('front/images/banner_2_product.png') }}" alt=""></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
 
             </div>
         </div>
