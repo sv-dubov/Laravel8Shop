@@ -74,7 +74,6 @@ Route::group(['prefix' => 'admin'], function () {
 });
 
 Route::get('/user/logout', [MainUserController::class, 'logout'])->name('user.logout');
-Route::get('/user/profile', [MainUserController::class, 'profile'])->name('user.profile')->middleware('verified');
 Route::get('/user/profile/edit', [MainUserController::class, 'edit'])->name('profile.edit')->middleware('verified');
 Route::post('/user/profile/store', [MainUserController::class, 'store'])->name('profile.store')->middleware('verified');
 Route::get('/user/password/view', [MainUserController::class, 'passwordView'])->name('user.password.view')->middleware('verified');

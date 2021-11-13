@@ -16,13 +16,6 @@ class MainUserController extends Controller
         return redirect()->route('login');
     }
 
-    public function profile()
-    {
-        $id = Auth::user()->id;
-        $user = User::find($id);
-        return view('user.profile.view_profile', compact('user'));
-    }
-
     public function edit()
     {
         $id = Auth::user()->id;
@@ -44,8 +37,7 @@ class MainUserController extends Controller
             $data['profile_photo_path'] = $filename;
         }
         $data->save();
-
-        return redirect()->route('user.profile');
+        return redirect()->back()->with('status', 'Your profile was updated!');
     }
 
     public function passwordView()
@@ -55,21 +47,22 @@ class MainUserController extends Controller
 
     public function passwordUpdate(Request $request)
     {
-        $validateData = $request->validate([
-            'current_password' => 'required',
-            'password' => 'required|confirmed'
-        ]);
-
-        $id = Auth::user()->id;
-        $hashedPassword = Auth::user()->password;
-        if (Hash::check($request->current_password, $hashedPassword)) {
-            $user = User::find($id);
-            $user->password = Hash::make($request->password);
-            $user->save();
-            Auth::logout();
-            return redirect()->route('login');
+        $password = Auth::user()->password;
+        $current_password = $request->current_password;
+        $new_password = $request->password;
+        $confirm = $request->password_confirmation;
+        if (Hash::check($current_password, $password)) {
+            if ($new_password === $confirm) {
+                $user = User::find(Auth::id());
+                $user->password = Hash::make($request->password);
+                $user->save();
+                Auth::logout();
+                return redirect()->route('login')->with('status', 'Password updated successfully! Please, sign in with your new password');
+            } else {
+                return redirect()->back()->with('status', 'New password and Confirm password not matched!');
+            }
         } else {
-            return redirect()->back();
+            return redirect()->back()->with('status', 'Current password not matched!');
         }
     }
 }

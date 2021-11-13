@@ -54,9 +54,27 @@
                                 </ul>
                             </div>
                             <div class="top_bar_user">
-                                <div class="user_icon"><img src="{{ asset ('front/images/user.svg') }}" alt=""></div>
-                                {{--<div><a href="{{ route('register') }}">Register</a></div>--}}
-                                <div><a href="{{ route('login') }}">Sign in</a></div>
+                                @guest
+                                    <div class="user_icon"><img src="{{ asset ('front/images/user.svg') }}" alt=""></div>
+                                    <div><a href="{{ route('login') }}">Sign in/Sign up</a></div>
+                                @else
+                                    <ul class="standard_dropdown top_bar_dropdown">
+                                        <li>
+                                            <a href="/">
+                                                <div class="user_icon">
+                                                    <img src="{{ asset('front/images/user.svg')}}" alt="">
+                                                </div> Profile<i class="fas fa-chevron-down"></i>
+                                            </a>
+                                            <ul>
+                                                <li><a href="#">Wishlist</a></li>
+                                                <li><a href="#">Checkout</a></li>
+                                                <li><a href="#">Others</a></li>
+                                                <li><a href="{{ route('user.logout') }}">Sign out</a></li>
+                                            </ul>
+                                        </li>
+
+                                    </ul>
+                                @endguest
                             </div>
                         </div>
                     </div>
@@ -67,7 +85,7 @@
         <!-- Header Main -->
 
         @if (session('status'))
-            <div class="alert alert-success">
+            <div class="alert alert-info">
                 <button type="button" class="close" data-dismiss="alert">×</button>
                 {{ session('status') }}
             </div>
@@ -157,6 +175,13 @@
 <script src="{{ asset('front/plugins/slick-1.8.0/slick.js') }}"></script>
 <script src="{{ asset('front/plugins/easing/easing.js') }}"></script>
 <script src="{{ asset('front/js/custom.js') }}"></script>
+<script>
+    $("document").ready(function(){
+        setTimeout(function(){
+            $("div.alert").remove();
+        }, 6000 );
+    });
+</script>
 </body>
 
 </html>
