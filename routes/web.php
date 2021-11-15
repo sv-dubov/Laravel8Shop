@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\CouponController;
 use App\Http\Controllers\Admin\NewsletterController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\MainAdminController;
 use App\Http\Controllers\MainUserController;
@@ -41,6 +42,10 @@ Route::post('newsletter/store', [FrontController::class, 'storeNewsletter'])->na
 
 //Add Wishlist
 Route::get('add/wishlist/{id}', [WishlistController::class, 'addWishlist']);
+
+//Add to Cart
+Route::get('add/tocart/{id}', [CartController::class, 'addCart']);
+Route::get('check', [CartController::class, 'check']);
 
 Route::group(['prefix' => 'admin', 'middleware' => ['admin:admin']], function () {
     Route::get('/login', [AdminController::class, 'loginForm']);
