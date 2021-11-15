@@ -148,10 +148,7 @@
                             <div class="tabs">
                                 <ul class="clearfix">
                                     <li class="active">Featured</li>
-                                    <li>Trends</li>
-                                    <li>Best Rated</li>
                                 </ul>
-                                <div class="tabs_line"><span></span></div>
                             </div>
 
                             <!-- Product Panel -->
@@ -184,7 +181,11 @@
                                                     <button class="product_cart_button">Add to Cart</button>
                                                 </div>
                                             </div>
-                                            <div class="product_fav"><i class="fas fa-heart"></i></div>
+
+                                            <button class="addwishlist" data-id="{{$row->id}}">
+                                                <div class="product_fav"><i class="fas fa-heart"></i></div>
+                                            </button>
+
                                             <ul class="product_marks">
                                                 @if($row->discount_price == null)
                                                     <li class="product_mark product_discount" style="background: #0e8ce4;">New</li>
@@ -201,112 +202,6 @@
                                         </div>
                                     </div>
                                     @endforeach
-                                </div>
-                                <div class="featured_slider_dots_cover"></div>
-                            </div>
-
-                            <!-- Product Panel -->
-
-                            <div class="product_panel panel">
-                                <div class="featured_slider slider">
-
-                                    <!-- Slider Item -->
-                                    @foreach($trendProducts as $row)
-                                        <div class="featured_slider_item">
-                                            <div class="border_active"></div>
-                                            <div class="product_item discount d-flex flex-column align-items-center justify-content-center text-center">
-                                                <div class="product_image d-flex flex-column align-items-center justify-content-center">
-                                                    <img src="{{ asset ($row->image_one) }}" style="width: 120px; height: 150px;" alt="">
-                                                </div>
-                                                <div class="product_content">
-                                                    @if($row->discount_price == null)
-                                                        <div class="product_price discount">${{ $row->selling_price }}</div>
-                                                    @else
-                                                        <div class="product_price discount">${{ $row->discount_price }}
-                                                            <span>${{ $row->selling_price }}</span>
-                                                        </div>
-                                                    @endif
-                                                    <div class="product_name"><div><a href="product.html">{{ $row->product_name }}</a></div></div>
-                                                    <div class="product_extras">
-                                                        <div class="product_color">
-                                                            <input type="radio" checked name="product_color" style="background:#b19c83">
-                                                            <input type="radio" name="product_color" style="background:#000000">
-                                                            <input type="radio" name="product_color" style="background:#999999">
-                                                        </div>
-                                                        <button class="product_cart_button">Add to Cart</button>
-                                                    </div>
-                                                </div>
-                                                <div class="product_fav"><i class="fas fa-heart"></i></div>
-                                                <ul class="product_marks">
-                                                    @if($row->discount_price == null)
-                                                        <li class="product_mark product_discount" style="background: #0e8ce4;">New</li>
-                                                    @else
-                                                        <li class="product_mark product_discount">
-                                                            @php
-                                                                $amount = $row->selling_price - $row->discount_price;
-                                                                $discount = $amount/$row->selling_price*100;
-                                                            @endphp
-                                                            {{ intval($discount) }}%
-                                                        </li>
-                                                    @endif
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    @endforeach
-
-                                </div>
-                                <div class="featured_slider_dots_cover"></div>
-                            </div>
-
-                            <!-- Product Panel -->
-
-                            <div class="product_panel panel">
-                                <div class="featured_slider slider">
-
-                                    <!-- Slider Item -->
-                                    @foreach($bestProducts as $row)
-                                        <div class="featured_slider_item">
-                                            <div class="border_active"></div>
-                                            <div class="product_item discount d-flex flex-column align-items-center justify-content-center text-center">
-                                                <div class="product_image d-flex flex-column align-items-center justify-content-center">
-                                                    <img src="{{ asset ($row->image_one) }}" style="width: 120px; height: 150px;" alt="">
-                                                </div>
-                                                <div class="product_content">
-                                                    @if($row->discount_price == null)
-                                                        <div class="product_price discount">${{ $row->selling_price }}</div>
-                                                    @else
-                                                        <div class="product_price discount">${{ $row->discount_price }}
-                                                            <span>${{ $row->selling_price }}</span>
-                                                        </div>
-                                                    @endif
-                                                    <div class="product_name"><div><a href="product.html">{{ $row->product_name }}</a></div></div>
-                                                    <div class="product_extras">
-                                                        <div class="product_color">
-                                                            <input type="radio" checked name="product_color" style="background:#b19c83">
-                                                            <input type="radio" name="product_color" style="background:#000000">
-                                                            <input type="radio" name="product_color" style="background:#999999">
-                                                        </div>
-                                                        <button class="product_cart_button">Add to Cart</button>
-                                                    </div>
-                                                </div>
-                                                <div class="product_fav"><i class="fas fa-heart"></i></div>
-                                                <ul class="product_marks">
-                                                    @if($row->discount_price == null)
-                                                        <li class="product_mark product_discount" style="background: #0e8ce4;">New</li>
-                                                    @else
-                                                        <li class="product_mark product_discount">
-                                                            @php
-                                                                $amount = $row->selling_price - $row->discount_price;
-                                                                $discount = $amount/$row->selling_price*100;
-                                                            @endphp
-                                                            {{ intval($discount) }}%
-                                                        </li>
-                                                    @endif
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    @endforeach
-
                                 </div>
                                 <div class="featured_slider_dots_cover"></div>
                             </div>
@@ -410,9 +305,7 @@
                         <div class="tabs clearfix tabs-right">
                             <div class="new_arrivals_title">Hot New Arrivals</div>
                             <ul class="clearfix">
-                                <li class="active">Featured</li>
-                                <li>Audio & Video</li>
-                                <li>Laptops & Computers</li>
+                                <li class="active"></li>
                             </ul>
                             <div class="tabs_line"><span></span></div>
                         </div>
@@ -2829,3 +2722,45 @@
     </div>
 
 @endsection
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.addwishlist').on('click', function () {
+            var id = $(this).data('id');
+            if (id) {
+                $.ajax({
+                    url: "{{ url('add/wishlist/') }}/" + id,
+                    type: "GET",
+                    dataType: "json",
+                    success: function (data) {
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true,
+                            onOpen: (toast) => {
+                                toast.addEventListener('mouseenter', Swal.stopTimer)
+                                toast.addEventListener('mouseleave', Swal.resumeTimer)
+                            }
+                        })
+                        if ($.isEmptyObject(data.error)) {
+                            Toast.fire({
+                                icon: 'success',
+                                title: data.success
+                            })
+                        } else {
+                            Toast.fire({
+                                icon: 'error',
+                                title: data.error
+                            })
+                        }
+                    },
+                });
+            } else {
+                alert('danger');
+            }
+        });
+    });
+</script>

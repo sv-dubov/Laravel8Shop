@@ -14,6 +14,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('front/plugins/slick-1.8.0/slick.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('front/styles/main_styles.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('front/styles/responsive.css') }}">
+    <link rel="stylesheet" href="sweetalert2.min.css">
 </head>
 
 <body>
@@ -175,6 +176,7 @@
 <script src="{{ asset('front/plugins/slick-1.8.0/slick.js') }}"></script>
 <script src="{{ asset('front/plugins/easing/easing.js') }}"></script>
 <script src="{{ asset('front/js/custom.js') }}"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
     $("document").ready(function(){
         setTimeout(function(){
