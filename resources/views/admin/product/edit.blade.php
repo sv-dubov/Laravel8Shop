@@ -166,8 +166,15 @@
 
                         <div class="col-lg-4">
                             <label class="ckbox">
-                                <input type="checkbox" name="hot_new" value="1" {{ ($product->hot_new == 1 ? 'checked' : '') }} >
+                                <input type="checkbox" name="hot_new" value="1" {{ ($product->hot_new == 1 ? 'checked' : '') }}>
                                 <span>Hot New</span>
+                            </label>
+                        </div> <!-- col-4 -->
+
+                        <div class="col-lg-4">
+                            <label class="ckbox">
+                                <input type="checkbox" name="buyone_getone" value="1" {{ ($product->buyone_getone == 1 ? 'checked' : '') }}>
+                                <span>Buy One Get One</span>
                             </label>
                         </div> <!-- col-4 -->
 

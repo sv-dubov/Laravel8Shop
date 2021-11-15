@@ -67,6 +67,7 @@ class ProductController extends Controller
         $data['trend'] = $request->trend;
         $data['mid_slider'] = $request->mid_slider;
         $data['hot_new'] = $request->hot_new;
+        $data['buyone_getone'] = $request->buyone_getone;
         $data['status'] = 1;
         $data['created_at'] = Carbon::now();
         $data['updated_at'] = Carbon::now();
@@ -137,6 +138,7 @@ class ProductController extends Controller
         $data['trend'] = $request->trend;
         $data['mid_slider'] = $request->mid_slider;
         $data['hot_new'] = $request->hot_new;
+        $data['buyone_getone'] = $request->buyone_getone;
         $data['created_at'] = $request->created_at;
         $data['updated_at'] = Carbon::now();
 

@@ -417,7 +417,7 @@
                             <div class="tabs_line"><span></span></div>
                         </div>
                         <div class="row">
-                            <div class="col-lg-9" style="z-index:1;">
+                            <div class="col-lg-12" style="z-index:1;">
 
                                 <!-- Product Panel -->
                                 <div class="product_panel panel active">
@@ -1642,27 +1642,6 @@
 
                             </div>
 
-                            <div class="col-lg-3">
-                                <div class="arrivals_single clearfix">
-                                    <div class="d-flex flex-column align-items-center justify-content-center">
-                                        <div class="arrivals_single_image"><img src="{{ asset ('front/images/new_single.png') }}" alt=""></div>
-                                        <div class="arrivals_single_content">
-                                            <div class="arrivals_single_category"><a href="#">Smartphones</a></div>
-                                            <div class="arrivals_single_name_container clearfix">
-                                                <div class="arrivals_single_name"><a href="#">LUNA Smartphone</a></div>
-                                                <div class="arrivals_single_price text-right">$379</div>
-                                            </div>
-                                            <div class="rating_r rating_r_4 arrivals_single_rating"><i></i><i></i><i></i><i></i><i></i></div>
-                                            <form action="#"><button class="arrivals_single_button">Add to Cart</button></form>
-                                        </div>
-                                        <div class="arrivals_single_fav product_fav active"><i class="fas fa-heart"></i></div>
-                                        <ul class="arrivals_single_marks product_marks">
-                                            <li class="arrivals_single_mark product_mark product_new">new</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-
                         </div>
 
                     </div>
@@ -2374,11 +2353,8 @@
     <div class="adverts">
         <div class="container">
             <div class="row">
-
                 <div class="col-lg-4 advert_col">
-
                     <!-- Advert Item -->
-
                     <div class="advert d-flex flex-row align-items-center justify-content-start">
                         <div class="advert_content">
                             <div class="advert_title"><a href="#">Trends 2018</a></div>
@@ -2389,9 +2365,7 @@
                 </div>
 
                 <div class="col-lg-4 advert_col">
-
                     <!-- Advert Item -->
-
                     <div class="advert d-flex flex-row align-items-center justify-content-start">
                         <div class="advert_content">
                             <div class="advert_subtitle">Trends 2018</div>
@@ -2403,9 +2377,7 @@
                 </div>
 
                 <div class="col-lg-4 advert_col">
-
                     <!-- Advert Item -->
-
                     <div class="advert d-flex flex-row align-items-center justify-content-start">
                         <div class="advert_content">
                             <div class="advert_title"><a href="#">Trends 2018</a></div>
@@ -2430,7 +2402,7 @@
                 <!-- Trends Content -->
                 <div class="col-lg-3">
                     <div class="trends_container">
-                        <h2 class="trends_title">Trends 2018</h2>
+                        <h2 class="trends_title">Buy One Get One</h2>
                         <div class="trends_text"><p>Lorem ipsum dolor sit amet, consectetur adipiscing Donec et.</p></div>
                         <div class="trends_slider_nav">
                             <div class="trends_prev trends_nav"><i class="fas fa-angle-left ml-auto"></i></div>
