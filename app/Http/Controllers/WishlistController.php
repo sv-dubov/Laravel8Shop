@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Auth;
+use Carbon\Carbon;
 use DB;
 use Illuminate\Http\Request;
 
@@ -15,6 +16,8 @@ class WishlistController extends Controller
         $data = array(
             'user_id' => $userid,
             'product_id' => $id,
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
         );
 
         if (Auth::Check()) {

@@ -328,13 +328,11 @@
                                                         <button class="product_cart_button">Add to Cart</button>
                                                     </div>
                                                 </div>
-
                                                 <button class="addwishlist" data-id="{{$row->id}}">
                                                     <div class="product_fav"><i class="fas fa-heart"></i></div>
                                                 </button>
-
                                                 <ul class="product_marks">
-                                                    <li class="product_mark product_new">new</li>
+                                                    <li class="product_mark product_new">New</li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -1098,11 +1096,10 @@
         <div class="trends_overlay"></div>
         <div class="container">
             <div class="row">
-
                 <!-- Trends Content -->
                 <div class="col-lg-3">
                     <div class="trends_container">
-                        <h2 class="trends_title">Buy One Get One</h2>
+                        <h2 class="trends_title">Trends</h2>
                         <div class="trends_text"><p>Lorem ipsum dolor sit amet, consectetur adipiscing Donec et.</p></div>
                         <div class="trends_slider_nav">
                             <div class="trends_prev trends_nav"><i class="fas fa-angle-left ml-auto"></i></div>
@@ -1110,133 +1107,44 @@
                         </div>
                     </div>
                 </div>
-
                 <!-- Trends Slider -->
                 <div class="col-lg-9">
                     <div class="trends_slider_container">
-
                         <!-- Trends Slider -->
-
                         <div class="owl-carousel owl-theme trends_slider">
-
                             <!-- Trends Slider Item -->
+                            @foreach($trendProducts as $row)
                             <div class="owl-item">
                                 <div class="trends_item is_new">
-                                    <div class="trends_image d-flex flex-column align-items-center justify-content-center"><img src="{{ asset ('front/images/trends_1.jpg') }}" alt=""></div>
+                                    <div class="trends_image d-flex flex-column align-items-center justify-content-center">
+                                        <img src="{{ asset ($row->image_one) }}" style="width: 120px; height: 150px;" alt="">
+                                    </div>
                                     <div class="trends_content">
-                                        <div class="trends_category"><a href="#">Smartphones</a></div>
+                                        <div class="trends_category"><a href="#">{{ $row->getBrandTitle() }}</a></div>
                                         <div class="trends_info clearfix">
-                                            <div class="trends_name"><a href="product.html">Jump White</a></div>
-                                            <div class="trends_price">$379</div>
+                                            <div class="trends_name"><a href="product.html">{{ $row->product_name }}</a></div>
+                                            @if($row->discount_price == null)
+                                                <div class="product_price discount">${{ $row->selling_price }}</div>
+                                            @else
+                                                <div class="product_price discount">${{ $row->discount_price }}
+                                                    <span>${{ $row->selling_price }}</span>
+                                                </div>
+                                            @endif
+                                            <a href="" class="btn btn-primary btn-block">Add to Cart</a>
                                         </div>
                                     </div>
                                     <ul class="trends_marks">
-                                        <li class="trends_mark trends_discount">-25%</li>
-                                        <li class="trends_mark trends_new">new</li>
+                                        <li class="trends_mark trends_new" style="background: #0e8ce4;">Trend</li>
                                     </ul>
-                                    <div class="trends_fav"><i class="fas fa-heart"></i></div>
+                                    <button class="addwishlist" data-id="{{$row->id}}">
+                                        <div class="trends_fav"><i class="fas fa-heart"></i></div>
+                                    </button>
                                 </div>
                             </div>
-
-                            <!-- Trends Slider Item -->
-                            <div class="owl-item">
-                                <div class="trends_item">
-                                    <div class="trends_image d-flex flex-column align-items-center justify-content-center"><img src="{{ asset ('front/images/trends_2.jpg') }}" alt=""></div>
-                                    <div class="trends_content">
-                                        <div class="trends_category"><a href="#">Smartphones</a></div>
-                                        <div class="trends_info clearfix">
-                                            <div class="trends_name"><a href="product.html">Samsung Charm...</a></div>
-                                            <div class="trends_price">$379</div>
-                                        </div>
-                                    </div>
-                                    <ul class="trends_marks">
-                                        <li class="trends_mark trends_discount">-25%</li>
-                                        <li class="trends_mark trends_new">new</li>
-                                    </ul>
-                                    <div class="trends_fav"><i class="fas fa-heart"></i></div>
-                                </div>
-                            </div>
-
-                            <!-- Trends Slider Item -->
-                            <div class="owl-item">
-                                <div class="trends_item is_new">
-                                    <div class="trends_image d-flex flex-column align-items-center justify-content-center"><img src="{{ asset ('front/images/trends_3.jpg') }}" alt=""></div>
-                                    <div class="trends_content">
-                                        <div class="trends_category"><a href="#">Smartphones</a></div>
-                                        <div class="trends_info clearfix">
-                                            <div class="trends_name"><a href="product.html">DJI Phantom 3...</a></div>
-                                            <div class="trends_price">$379</div>
-                                        </div>
-                                    </div>
-                                    <ul class="trends_marks">
-                                        <li class="trends_mark trends_discount">-25%</li>
-                                        <li class="trends_mark trends_new">new</li>
-                                    </ul>
-                                    <div class="trends_fav"><i class="fas fa-heart"></i></div>
-                                </div>
-                            </div>
-
-                            <!-- Trends Slider Item -->
-                            <div class="owl-item">
-                                <div class="trends_item is_new">
-                                    <div class="trends_image d-flex flex-column align-items-center justify-content-center"><img src="{{ asset ('front/images/trends_1.jpg') }}" alt=""></div>
-                                    <div class="trends_content">
-                                        <div class="trends_category"><a href="#">Smartphones</a></div>
-                                        <div class="trends_info clearfix">
-                                            <div class="trends_name"><a href="product.html">Jump White</a></div>
-                                            <div class="trends_price">$379</div>
-                                        </div>
-                                    </div>
-                                    <ul class="trends_marks">
-                                        <li class="trends_mark trends_discount">-25%</li>
-                                        <li class="trends_mark trends_new">new</li>
-                                    </ul>
-                                    <div class="trends_fav"><i class="fas fa-heart"></i></div>
-                                </div>
-                            </div>
-
-                            <!-- Trends Slider Item -->
-                            <div class="owl-item">
-                                <div class="trends_item">
-                                    <div class="trends_image d-flex flex-column align-items-center justify-content-center"><img src="{{ asset ('front/images/trends_2.jpg') }}" alt=""></div>
-                                    <div class="trends_content">
-                                        <div class="trends_category"><a href="#">Smartphones</a></div>
-                                        <div class="trends_info clearfix">
-                                            <div class="trends_name"><a href="product.html">Jump White</a></div>
-                                            <div class="trends_price">$379</div>
-                                        </div>
-                                    </div>
-                                    <ul class="trends_marks">
-                                        <li class="trends_mark trends_discount">-25%</li>
-                                        <li class="trends_mark trends_new">new</li>
-                                    </ul>
-                                    <div class="trends_fav"><i class="fas fa-heart"></i></div>
-                                </div>
-                            </div>
-
-                            <!-- Trends Slider Item -->
-                            <div class="owl-item">
-                                <div class="trends_item is_new">
-                                    <div class="trends_image d-flex flex-column align-items-center justify-content-center"><img src="{{ asset ('front/images/trends_3.jpg') }}" alt=""></div>
-                                    <div class="trends_content">
-                                        <div class="trends_category"><a href="#">Smartphones</a></div>
-                                        <div class="trends_info clearfix">
-                                            <div class="trends_name"><a href="product.html">Jump White</a></div>
-                                            <div class="trends_price">$379</div>
-                                        </div>
-                                    </div>
-                                    <ul class="trends_marks">
-                                        <li class="trends_mark trends_discount">-25%</li>
-                                        <li class="trends_mark trends_new">new</li>
-                                    </ul>
-                                    <div class="trends_fav"><i class="fas fa-heart"></i></div>
-                                </div>
-                            </div>
-
+                            @endforeach
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
