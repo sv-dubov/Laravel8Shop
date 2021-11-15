@@ -44,6 +44,7 @@ class AppServiceProvider extends ServiceProvider
             $view->with('trendProducts', Product::where('status', '1')->where('trend', '1')->orderBy('id', 'desc')->limit(8)->get());
             $view->with('bestProducts', Product::where('status', '1')->where('best_rated', '1')->orderBy('id', 'desc')->limit(8)->get());
             $view->with('hotDealProducts', Product::where('status', '1')->where('hot_deal', '1')->orderBy('id', 'desc')->limit(3)->get());
+            $view->with('hotNewProducts', Product::where('status', '1')->where('hot_new', '1')->orderBy('id', 'desc')->limit(10)->get());
             $view->with('midSliderProducts', Product::where('status', '1')->where('mid_slider', '1')->orderBy('id', 'desc')->limit(3)->get());
             $view->with('parentCategories', Category::whereNull('parent_id')->orderBy('category_name', 'asc')->get());
         });
