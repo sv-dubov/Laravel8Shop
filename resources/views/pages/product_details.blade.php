@@ -30,22 +30,22 @@
                         <div class="product_text">
                             <p>{!!  str_limit($product->product_details, $limit = 600 )  !!}</p>
                         </div>
-                        <div class="order_info d-flex flex-row">
-                            <form action="{{ url('cart/product/add/'.$product->id) }}" method="post">
-                                @csrf
+                        <form action="{{ url('cart/product/add/'.$product->id) }}" method="post">
+                            @csrf
+                            <div class="order_info d-flex flex-row">
                                 <div class="row">
                                     @if($product->product_color == null)
                                     @else
-                                    <div class="col-lg-4">
-                                        <div class="form-group">
-                                            <label for="exampleFormControlSelect1">Color</label>
-                                            <select class="form-control input-lg" id="exampleFormControlSelect1" name="color">
-                                                @foreach($product_color as $color)
-                                                    <option value="{{ $color }}">{{ $color }}</option>
-                                                @endforeach
-                                            </select>
+                                        <div class="col-lg-4">
+                                            <div class="form-group">
+                                                <label for="exampleFormControlSelect1">Color</label>
+                                                <select class="form-control input-lg" id="exampleFormControlSelect1" name="color">
+                                                    @foreach($product_color as $color)
+                                                        <option value="{{ $color }}">{{ $color }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
                                         </div>
-                                    </div>
                                     @endif
                                     @if($product->product_size == null)
                                     @else
@@ -67,20 +67,20 @@
                                         </div>
                                     </div>
                                 </div>
-                            </form>
-                        </div>
-                        @if($product->discount_price == NULL)
-                            <div class="product_price">${{ $product->selling_price }}</div>
-                        @else
-                            <div class="product_price">${{ $product->discount_price }}<span>${{ $product->selling_price }}</span></div>
-                        @endif
-                        <div class="button_container">
-                            <button type="submit" class="button cart_button">Add to Cart</button>
-                            <div class="product_fav"><i class="fas fa-heart"></i></div>
-                        </div>
-                        <br><br>
-                        <!-- Go to www.addthis.com/dashboard to customize your tools -->
-                        <div class="addthis_inline_share_toolbox"></div>
+                            </div>
+                            @if($product->discount_price == NULL)
+                                <div class="product_price">${{ $product->selling_price }}</div>
+                            @else
+                                <div class="product_price">${{ $product->discount_price }}
+                                    <span>${{ $product->selling_price }}</span></div>
+                            @endif
+                            <div class="button_container">
+                                <button type="submit" class="button cart_button">Add to Cart</button>
+                                <div class="product_fav"><i class="fas fa-heart"></i></div>
+                            </div>
+                            <br><br>
+                            <!-- Go to www.addthis.com/dashboard to customize your tools -->
+                            <div class="addthis_inline_share_toolbox"></div>
                         </form>
                     </div>
                 </div>

@@ -47,7 +47,8 @@ Route::get('add/wishlist/{id}', [WishlistController::class, 'addWishlist']);
 Route::get('add/tocart/{id}', [CartController::class, 'addCart']);
 Route::get('check', [CartController::class, 'check']);
 
-Route::get('/product/details/{id}/{product_name}', [\App\Http\Controllers\ProductController::class, 'details'])->name('product.details');
+Route::get('/product/details/{id}/{product_name}', [\App\Http\Controllers\ProductController::class, 'details']);
+Route::post('/cart/product/add/{id}', [\App\Http\Controllers\ProductController::class, 'addCart']);
 
 Route::group(['prefix' => 'admin', 'middleware' => ['admin:admin']], function () {
     Route::get('/login', [AdminController::class, 'loginForm']);
