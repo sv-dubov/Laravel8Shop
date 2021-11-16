@@ -50,6 +50,9 @@ Route::get('show/cart', [CartController::class, 'showCart'])->name('show.cart');
 Route::get('remove/cart/{rowId}', [CartController::class, 'removeFromCart']);
 Route::post('update/cart/item/', [CartController::class, 'updateCartItem'])->name('update.cart-item');
 
+Route::get('/cart/product/view/{id}', [CartController::class, 'viewProduct']);
+Route::post('insert/tocart/', [CartController::class, 'insertCart'])->name('insert.to.cart');
+
 Route::get('/product/details/{id}/{product_name}', [\App\Http\Controllers\ProductController::class, 'details']);
 Route::post('/cart/product/add/{id}', [\App\Http\Controllers\ProductController::class, 'addCart']);
 
