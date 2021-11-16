@@ -46,6 +46,9 @@ Route::get('add/wishlist/{id}', [WishlistController::class, 'addWishlist']);
 //Add to Cart
 Route::get('add/tocart/{id}', [CartController::class, 'addCart']);
 Route::get('check', [CartController::class, 'check']);
+Route::get('show/cart', [CartController::class, 'showCart'])->name('show.cart');
+Route::get('remove/cart/{rowId}', [CartController::class, 'removeFromCart']);
+Route::post('update/cart/item/', [CartController::class, 'updateCartItem'])->name('update.cart-item');
 
 Route::get('/product/details/{id}/{product_name}', [\App\Http\Controllers\ProductController::class, 'details']);
 Route::post('/cart/product/add/{id}', [\App\Http\Controllers\ProductController::class, 'addCart']);
