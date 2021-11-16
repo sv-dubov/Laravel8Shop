@@ -179,6 +179,7 @@
 <script src="{{ asset('front/plugins/slick-1.8.0/slick.js') }}"></script>
 <script src="{{ asset('front/plugins/easing/easing.js') }}"></script>
 <script src="{{ asset('front/js/custom.js') }}"></script>
+<script src="{{ asset('front/js/product_custom.js') }}"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
     $("document").ready(function(){
