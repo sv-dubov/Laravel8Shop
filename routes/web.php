@@ -53,6 +53,12 @@ Route::post('update/cart/item/', [CartController::class, 'updateCartItem'])->nam
 Route::get('/cart/product/view/{id}', [CartController::class, 'viewProduct']);
 Route::post('insert/tocart/', [CartController::class, 'insertCart'])->name('insert.to.cart');
 
+Route::get('user/checkout/', [CartController::class, 'checkout'])->name('user.checkout');
+Route::get('user/wishlist/', [CartController::class, 'wishlist'])->name('user.wishlist');
+
+Route::post('user/apply/coupon/', [CartController::class, 'coupon'])->name('apply.coupon');
+Route::get('user/remove/coupon/', [CartController::class, 'removeCoupon'])->name('remove.coupon');
+
 Route::get('/product/details/{id}/{product_name}', [\App\Http\Controllers\ProductController::class, 'details']);
 Route::post('/cart/product/add/{id}', [\App\Http\Controllers\ProductController::class, 'addCart']);
 
