@@ -4,7 +4,6 @@
 
     @include('layouts.menubar')
 
-
     <!-- Banner -->
 
     <div class="banner">
