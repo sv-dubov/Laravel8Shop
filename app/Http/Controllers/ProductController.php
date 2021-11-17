@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Admin\Brand;
 use App\Models\Admin\Category;
 use App\Models\Admin\Product;
 use DB;
@@ -53,15 +52,6 @@ class ProductController extends Controller
     }
 
     public function productList($id)
-    {
-        $products = Product::where('category_id', $id)->orderBy('created_at', 'desc')->paginate(10);
-        $categories = Category::all();
-        $category = Product::where('category_id', $id)->select('category_id')->firstOrFail();
-        $brands = Product::where('category_id', $id)->select('brand_id')->groupBy('brand_id')->get(); //only brands of chosen category
-        return view('pages.products_list', compact('products', 'categories', 'category', 'brands'));
-    }
-
-    public function categoryList($id)
     {
         $products = Product::where('category_id', $id)->orderBy('created_at', 'desc')->paginate(10);
         $categories = Category::all();
