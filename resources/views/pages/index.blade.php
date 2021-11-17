@@ -4,6 +4,33 @@
 
     @include('layouts.menubar')
 
+
+    <!-- Banner -->
+
+    <div class="banner">
+        <div class="banner_background" style="background-image:url({{ asset ('front/images/banner_background.jpg') }})"></div>
+        <div class="container fill_height">
+            <div class="row fill_height">
+                <div class="banner_product_image"><img src="{{ asset ($mainSliderProduct->image_one) }}" alt=""></div>
+                <div class="col-lg-5 offset-lg-4 fill_height">
+                    <div class="banner_content">
+                        <h1 class="banner_text">{{ $mainSliderProduct->product_name }}</h1>
+                        <div class="banner_price">
+                            @if($mainSliderProduct->discount_price == null)
+                                <h3>${{ $mainSliderProduct->selling_price }}</h3>
+                            @else
+                                <span>${{ $mainSliderProduct->selling_price }}</span>
+                                ${{ $mainSliderProduct->discount_price }}
+                            @endif
+                        </div>
+                        <div class="banner_product_name">{{ $mainSliderProduct->getBrandTitle() }}</div>
+                        <div class="button banner_button"><a href="#">Shop Now</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Characteristics -->
 
     <div class="characteristics">

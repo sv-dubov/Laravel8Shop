@@ -24,7 +24,9 @@
                 <!-- Description -->
                 <div class="col-lg-5 order-3">
                     <div class="product_description">
-                        <div class="product_category">{{ $product->getCategoryTitle() }}</div>
+                        <div class="product_category">
+                            <a href="{{ url('products/category/'.$product->category_id) }}">{{ $product->getCategoryTitle() }}</a>
+                        </div>
                         <div class="product_name">{{ $product->getBrandTitle() }} {{ $product->product_name }}</div>
                         <div class="rating_r rating_r_4 product_rating"><i></i><i></i><i></i><i></i><i></i></div>
                         <div class="product_text">

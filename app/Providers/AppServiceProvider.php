@@ -7,6 +7,7 @@ use App\Models\Admin\Category;
 use App\Models\Admin\Product;
 use Auth;
 use DB;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -28,13 +29,14 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        Paginator::useBootstrap();
+
         view()->composer('admin.partials._header', function($view){
             $view->with('admin', Admin::all());
         });
 
         view()->composer('layouts.menubar', function($view){
             $view->with('categories', Category::with('allChildren')->whereNull('parent_id')->orderBy('category_name', 'asc')->get());
-            $view->with('mainSliderProduct', Product::where('main_slider', '1')->latest()->first());
         });
 
         view()->composer('layouts.app', function($view){
@@ -43,6 +45,7 @@ class AppServiceProvider extends ServiceProvider
         });
 
         view()->composer('pages.index', function($view){
+            $view->with('mainSliderProduct', Product::where('main_slider', '1')->latest()->first());
             $view->with('featuredProducts', Product::where('status', '1')->orderBy('id', 'desc')->limit(8)->get());
             $view->with('trendProducts', Product::where('status', '1')->where('trend', '1')->orderBy('id', 'desc')->limit(8)->get());
             $view->with('bestProducts', Product::where('status', '1')->where('best_rated', '1')->orderBy('id', 'desc')->limit(8)->get());

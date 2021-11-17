@@ -62,6 +62,9 @@ Route::get('user/remove/coupon/', [CartController::class, 'removeCoupon'])->name
 Route::get('/product/details/{id}/{product_name}', [\App\Http\Controllers\ProductController::class, 'details']);
 Route::post('/cart/product/add/{id}', [\App\Http\Controllers\ProductController::class, 'addCart']);
 
+//Products list page
+Route::get('products/category/{id}', [\App\Http\Controllers\ProductController::class, 'productList']);
+
 Route::group(['prefix' => 'admin', 'middleware' => ['admin:admin']], function () {
     Route::get('/login', [AdminController::class, 'loginForm']);
     Route::post('/login', [AdminController::class, 'store'])->name('admin.login');
