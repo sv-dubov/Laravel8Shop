@@ -7,6 +7,7 @@ use App\Models\Admin\Category;
 use App\Models\Admin\Product;
 use Auth;
 use DB;
+use Cart;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
 
@@ -53,6 +54,11 @@ class AppServiceProvider extends ServiceProvider
             $view->with('hotNewProducts', Product::where('status', '1')->where('hot_new', '1')->orderBy('id', 'desc')->limit(10)->get());
             $view->with('midSliderProducts', Product::where('status', '1')->where('mid_slider', '1')->orderBy('id', 'desc')->limit(3)->get());
             $view->with('parentCategories', Category::whereNull('parent_id')->orderBy('category_name', 'asc')->get());
+        });
+
+        view()->composer('pages.payment.stripe', function($view){
+            $view->with('cart', Cart::Content());
+            $view->with('settings', DB::table('settings')->first());
         });
     }
 }

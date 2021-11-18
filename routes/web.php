@@ -10,6 +10,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\MainAdminController;
 use App\Http\Controllers\MainUserController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\WishlistController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Support\Facades\Route;
@@ -61,6 +62,11 @@ Route::get('user/remove/coupon/', [CartController::class, 'removeCoupon'])->name
 
 Route::get('/product/details/{id}/{product_name}', [\App\Http\Controllers\ProductController::class, 'details']);
 Route::post('/cart/product/add/{id}', [\App\Http\Controllers\ProductController::class, 'addCart']);
+
+//Payment
+Route::get('user/payment', [CartController::class, 'paymentIndex'])->name('payment.index');
+Route::post('user/payment/process', [PaymentController::class, 'payment'])->name('payment.process');
+Route::post('user/stripe/charge', [PaymentController::class, 'stripeCharge'])->name('stripe.charge');
 
 //Products list page
 Route::get('products/category/{id}', [\App\Http\Controllers\ProductController::class, 'productList']);

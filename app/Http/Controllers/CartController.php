@@ -161,4 +161,11 @@ class CartController extends Controller
         Session::forget('coupon');
         return redirect()->back()->with('status', 'Coupon was removed');
     }
+
+    public function paymentIndex()
+    {
+        $cart = Cart::Content();
+        $settings = DB::table('settings')->first();
+        return view('pages.payment', compact('cart', 'settings'));
+    }
 }
