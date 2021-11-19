@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\CouponController;
 use App\Http\Controllers\Admin\NewsletterController;
+use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CartController;
@@ -104,6 +105,17 @@ Route::group(['prefix' => 'admin'], function () {
     Route::post('/products/images/update/{id}', [ProductController::class, 'updateImages'])->name('products.update.images');
     Route::get('/products/{id}', [ProductController::class, 'destroy'])->name('products.destroy');
     Route::get('/products/status/{id}', [ProductController::class, 'status'])->name('products.status');
+    //Orders
+    Route::get('/orders/pending', [OrderController::class, 'pendingOrders'])->name('admin.orders.pending');
+    Route::get('/orders/accepted', [OrderController::class, 'acceptedOrders'])->name('admin.orders.accepted');
+    Route::get('/orders/process', [OrderController::class, 'processOrders'])->name('admin.orders.process');
+    Route::get('/orders/delivered', [OrderController::class, 'deliveredOrders'])->name('admin.orders.delivered');
+    Route::get('/orders/canceled', [OrderController::class, 'canceledOrders'])->name('admin.orders.canceled');
+    Route::get('/order/view/{id}', [OrderController::class, 'viewOrder']);
+    Route::get('/payment/accept/{id}', [OrderController::class, 'paymentAccept']);
+    Route::get('/payment/cancel/{id}', [OrderController::class, 'paymentCancel']);
+    Route::get('/delivery/process/{id}', [OrderController::class, 'deliveryProcess']);
+    Route::get('/delivery/done/{id}', [OrderController::class, 'deliveryDone']);
 });
 
 Route::get('/user/logout', [MainUserController::class, 'logout'])->name('user.logout');

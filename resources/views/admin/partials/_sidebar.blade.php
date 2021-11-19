@@ -40,6 +40,20 @@
         </ul>
         <a href="#" class="sl-menu-link">
             <div class="sl-menu-item">
+                <i class="menu-item-icon fa fa-shopping-basket"></i>
+                <span class="menu-item-label">Orders</span>
+                <i class="menu-item-arrow fa fa-angle-down"></i>
+            </div><!-- menu-item -->
+        </a><!-- sl-menu-link -->
+        <ul class="sl-menu-sub nav flex-column">
+            <li class="nav-item"><a href="{{ route('admin.orders.pending') }}" class="nav-link">Pending orders</a></li>
+            <li class="nav-item"><a href="{{ route('admin.orders.accepted') }}" class="nav-link">Payment accept</a></li>
+            <li class="nav-item"><a href="{{ route('admin.orders.process') }}" class="nav-link">Process delivery</a></li>
+            <li class="nav-item"><a href="{{ route('admin.orders.delivered') }}" class="nav-link">Delivery done</a></li>
+            <li class="nav-item"><a href="{{ route('admin.orders.canceled') }}" class="nav-link">Canceled orders</a></li>
+        </ul>
+        <a href="#" class="sl-menu-link">
+            <div class="sl-menu-item">
                 <i class="menu-item-icon fa fa-money"></i>
                 <span class="menu-item-label">Coupons</span>
                 <i class="menu-item-arrow fa fa-angle-down"></i>

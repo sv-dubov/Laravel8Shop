@@ -19,6 +19,11 @@ class Product extends Model
         return $this->belongsTo(Brand::class);
     }
 
+    public function order_detail()
+    {
+        return $this->hasOne(OrderDetail::class);
+    }
+
     public function remove()
     {
         $this->delete();

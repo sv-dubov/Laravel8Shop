@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Admin\Order;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -67,5 +68,10 @@ class User extends Authenticatable implements MustVerifyEmail
             return '/upload/no_image.jpg';
         }
         return '/upload/user_images/' . $this->profile_photo_path;
+    }
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
     }
 }
