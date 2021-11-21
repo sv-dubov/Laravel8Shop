@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Admin\Category;
+use App\Models\Admin\Order;
+use App\Models\Admin\OrderDetail;
 use App\Models\Admin\Product;
+use App\Models\Admin\Shipping;
 use DB;
 use Cart;
 use Illuminate\Http\Request;
@@ -58,5 +61,12 @@ class ProductController extends Controller
         $category = Product::where('category_id', $id)->select('category_id')->firstOrFail();
         $brands = Product::where('category_id', $id)->select('brand_id')->groupBy('brand_id')->get(); //only brands of chosen category
         return view('pages.products_list', compact('products', 'categories', 'category', 'brands'));
+    }
+
+
+    public function viewOrderUser($id)
+    {
+        $details = OrderDetail::where('order_id', $id)->get();
+        return view('user.view_order', compact('details'));
     }
 }

@@ -6,8 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Admin\Order;
 use App\Models\Admin\OrderDetail;
 use App\Models\Admin\Shipping;
-use DB;
-use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {

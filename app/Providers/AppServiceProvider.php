@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Models\Admin;
 use App\Models\Admin\Category;
+use App\Models\Admin\Order;
 use App\Models\Admin\Product;
 use Auth;
 use DB;
@@ -43,6 +44,10 @@ class AppServiceProvider extends ServiceProvider
         view()->composer('layouts.app', function($view){
             $view->with('parentCategories', Category::whereNull('parent_id')->orderBy('category_name', 'asc')->get());
             $view->with('getWishlist', DB::table('wishlists')->where('user_id', Auth::id())->get());
+        });
+
+        view()->composer('user.index', function($view){
+            $view->with('getOrders', Order::where('user_id', Auth::id())->orderBy('id', 'desc')->get());
         });
 
         view()->composer('pages.index', function($view){

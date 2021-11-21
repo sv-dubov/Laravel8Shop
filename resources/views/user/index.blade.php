@@ -9,27 +9,41 @@
                     <table class="table table-response">
                         <thead>
                         <tr>
-                            <th scope="col">1 </th>
-                            <th scope="col">2 </th>
-                            <th scope="col">3 </th>
+                            <th scope="col">Payment type</th>
+                            <th scope="col">Payment ID</th>
+                            <th scope="col">Amount</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Status code</th>
+                            <th scope="col">Action</th>
                         </tr>
                         </thead>
                         <tbody>
+                        @foreach($getOrders as $row)
                             <tr>
-                                <td scope="col">1 </td>
-                                <td scope="col">2 </td>
-                                <td scope="col">3 </td>
+                                <td scope="col">{{ $row->payment_type }}</td>
+                                <td scope="col">{{ $row->payment_id }}</td>
+                                <td scope="col">{{ $row->total }}$</td>
+                                <td scope="col">{{ $row->date }}</td>
+                                <td scope="col">
+                                    @if($row->status == 0)
+                                        <span class="badge badge-warning">Pending</span>
+                                    @elseif($row->status == 1)
+                                        <span class="badge badge-info">Payment accept</span>
+                                    @elseif($row->status == 2)
+                                        <span class="badge badge-warning">In process</span>
+                                    @elseif($row->status == 3)
+                                        <span class="badge badge-success">Delivered</span>
+                                    @else
+                                        <span class="badge badge-danger">Cancel</span>
+                                    @endif
+                                </td>
+                                <td scope="col">{{ $row->status_code }}</td>
+                                <td scope="col">
+                                    <a href="{{ route('user.view.order', $row->id) }}" class="btn btn-sm btn-info">View</a>
+                                </td>
                             </tr>
-                            <tr>
-                                <td scope="col">1 </td>
-                                <td scope="col">2 </td>
-                                <td scope="col">3 </td>
-                            </tr>
-                            <tr>
-                                <td scope="col">1 </td>
-                                <td scope="col">2 </td>
-                                <td scope="col">3 </td>
-                            </tr>
+                        @endforeach
                         </tbody>
                     </table>
                 </div>

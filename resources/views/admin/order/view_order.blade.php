@@ -38,8 +38,8 @@
                                     <th>{{ $order->total }} $</th>
                                 </tr>
                                 <tr>
-                                    <th> Date: </th>
-                                    <th> {{ $order->date }} </th>
+                                    <th>Date: </th>
+                                    <th>{{ $order->date }}</th>
                                 </tr>
                             </table>
                         </div>

@@ -69,6 +69,9 @@ Route::get('user/payment', [CartController::class, 'paymentIndex'])->name('payme
 Route::post('user/payment/process', [PaymentController::class, 'payment'])->name('payment.process');
 Route::post('user/stripe/charge', [PaymentController::class, 'stripeCharge'])->name('stripe.charge');
 
+//User view order details
+Route::get('/order/view/{id}', [\App\Http\Controllers\ProductController::class, 'viewOrderUser'])->name('user.view.order');
+
 //Products list page
 Route::get('products/category/{id}', [\App\Http\Controllers\ProductController::class, 'productList']);
 
