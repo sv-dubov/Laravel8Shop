@@ -73,6 +73,9 @@ Route::post('user/stripe/charge', [PaymentController::class, 'stripeCharge'])->n
 //User view order details
 Route::get('/order/view/{id}', [\App\Http\Controllers\ProductController::class, 'viewOrderUser'])->name('user.view.order');
 
+//Order tracking
+Route::post('/order/tracking', [FrontController::class, 'orderTracking'])->name('user.order.tracking');
+
 //Products list page
 Route::get('products/category/{id}', [\App\Http\Controllers\ProductController::class, 'productList']);
 

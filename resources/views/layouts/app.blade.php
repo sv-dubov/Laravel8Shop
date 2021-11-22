@@ -35,16 +35,18 @@
                         <div class="top_bar_contact_item"><div class="top_bar_icon"><img src="{{ asset('front/images/phone.png')}}" alt=""></div>+38 068 005 3570</div>
                         <div class="top_bar_contact_item"><div class="top_bar_icon"><img src="{{ asset('front/images/mail.png')}}" alt=""></div><a href="mailto:fastsales@gmail.com">fastsales@gmail.com</a></div>
                         <div class="top_bar_content ml-auto">
+                            @guest
+                            @else
+                                <div class="top_bar_menu">
+                                    <ul class="standard_dropdown top_bar_dropdown">
+                                        <li>
+                                            <a href="" data-toggle="modal" data-target="#exampleModal">Order tracking</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            @endguest
                             <div class="top_bar_menu">
                                 <ul class="standard_dropdown top_bar_dropdown">
-                                    <li>
-                                        <a href="#">English<i class="fas fa-chevron-down"></i></a>
-                                        <ul>
-                                            <li><a href="#">Italian</a></li>
-                                            <li><a href="#">Spanish</a></li>
-                                            <li><a href="#">Japanese</a></li>
-                                        </ul>
-                                    </li>
                                     <li>
                                         <a href="#">$ US dollar<i class="fas fa-chevron-down"></i></a>
                                         <ul>
@@ -62,7 +64,7 @@
                                 @else
                                     <ul class="standard_dropdown top_bar_dropdown">
                                         <li>
-                                            <a href="/">
+                                            <a href="/dashboard">
                                                 <div class="user_icon">
                                                     <img src="{{ asset('front/images/user.svg')}}" alt="">
                                                 </div> Profile<i class="fas fa-chevron-down"></i>
@@ -166,6 +168,32 @@
         @yield('content')
 
     @include('layouts.footer')
+</div>
+
+<!--Order Traking Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Your status code</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="{{ route('user.order.tracking') }}" method="post">
+                    @csrf
+                    <div class="modal-body">
+                        <label>Status Code</label>
+                        <input type="text" name="code" class="form-control" placeholder="Fill your order status code" required>
+                    </div>
+                    <div class="contact_form_button text-center">
+                        <button type="submit" class="btn btn-primary">Track now</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
 
 <script src="{{ asset('front/js/jquery-3.3.1.min.js') }}"></script>
