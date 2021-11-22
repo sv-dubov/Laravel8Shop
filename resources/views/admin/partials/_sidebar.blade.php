@@ -73,6 +73,19 @@
             <li class="nav-item"><a href="{{ route('newsletters.index') }}" class="nav-link">Newsletters</a></li>
             <li class="nav-item"><a href="{{ route('admin.seo.index') }}" class="nav-link">SEO settings</a></li>
         </ul>
+        <a href="#" class="sl-menu-link">
+            <div class="sl-menu-item">
+                <i class="menu-item-icon fa fa-area-chart"></i>
+                <span class="menu-item-label">Reports</span>
+                <i class="menu-item-arrow fa fa-angle-down"></i>
+            </div><!-- menu-item -->
+        </a><!-- sl-menu-link -->
+        <ul class="sl-menu-sub nav flex-column">
+            <li class="nav-item"><a href="{{ route('admin.today.orders') }}" class="nav-link">Today's orders</a></li>
+            <li class="nav-item"><a href="{{ route('admin.today.delivery') }}" class="nav-link">Today's delivery</a></li>
+            <li class="nav-item"><a href="{{ route('admin.this.month') }}" class="nav-link">This month</a></li>
+            <li class="nav-item"><a href="{{ route('admin.search.report') }}" class="nav-link">Search report</a></li>
+        </ul>
     </div><!-- sl-sideleft-menu -->
     <br>
 </div><!-- sl-sideleft -->

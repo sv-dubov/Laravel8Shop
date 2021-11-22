@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\CouponController;
 use App\Http\Controllers\Admin\NewsletterController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\ReportController;
 use App\Http\Controllers\Admin\SeoController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CartController;
@@ -126,6 +127,14 @@ Route::group(['prefix' => 'admin'], function () {
     //SEO settings
     Route::get('/seo', [SeoController::class, 'index'])->name('admin.seo.index');
     Route::post('/seo/update', [SeoController::class, 'update'])->name('admin.seo.update');
+    //Orders reports
+    Route::get('/today/orders', [ReportController::class, 'todayOrders'])->name('admin.today.orders');
+    Route::get('/today/delivery', [ReportController::class, 'todayDelivery'])->name('admin.today.delivery');
+    Route::get('/this/month', [ReportController::class, 'thisMonth'])->name('admin.this.month');
+    Route::get('/search/report', [ReportController::class, 'search'])->name('admin.search.report');
+    Route::post('/search/report/by/year', [ReportController::class, 'searchByYear'])->name('admin.search.by-year');
+    Route::post('/search/report/by/month', [ReportController::class, 'searchByMonth'])->name('admin.search.by-month');
+    Route::post('/search/report/by/date', [ReportController::class, 'searchByDate'])->name('admin.search.by-date');
 });
 
 Route::get('/user/logout', [MainUserController::class, 'logout'])->name('user.logout');
