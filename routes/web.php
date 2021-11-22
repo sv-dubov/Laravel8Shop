@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\CouponController;
 use App\Http\Controllers\Admin\NewsletterController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\SeoController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\FrontController;
@@ -119,6 +120,9 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/payment/cancel/{id}', [OrderController::class, 'paymentCancel']);
     Route::get('/delivery/process/{id}', [OrderController::class, 'deliveryProcess']);
     Route::get('/delivery/done/{id}', [OrderController::class, 'deliveryDone']);
+    //SEO settings
+    Route::get('/seo', [SeoController::class, 'index'])->name('admin.seo.index');
+    Route::post('/seo/update', [SeoController::class, 'update'])->name('admin.seo.update');
 });
 
 Route::get('/user/logout', [MainUserController::class, 'logout'])->name('user.logout');
