@@ -86,6 +86,16 @@
             <li class="nav-item"><a href="{{ route('admin.this.month') }}" class="nav-link">This month</a></li>
             <li class="nav-item"><a href="{{ route('admin.search.report') }}" class="nav-link">Search report</a></li>
         </ul>
+        <a href="#" class="sl-menu-link">
+            <div class="sl-menu-item">
+                <i class="menu-item-icon fa fa-info-circle"></i>
+                <span class="menu-item-label">Site info</span>
+                <i class="menu-item-arrow fa fa-angle-down"></i>
+            </div><!-- menu-item -->
+        </a><!-- sl-menu-link -->
+        <ul class="sl-menu-sub nav flex-column">
+            <li class="nav-item"><a href="{{ route('admin.site.info') }}" class="nav-link">Change info</a></li>
+        </ul>
     </div><!-- sl-sideleft-menu -->
     <br>
 </div><!-- sl-sideleft -->

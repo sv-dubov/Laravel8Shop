@@ -43,7 +43,10 @@ class AppServiceProvider extends ServiceProvider
 
         view()->composer('layouts.app', function($view){
             $view->with('parentCategories', Category::whereNull('parent_id')->orderBy('category_name', 'asc')->get());
+            $view->with('childrenCategoriesOne', Category::whereNotNull('parent_id')->take(6)->get());
+            $view->with('childrenCategoriesTwo', Category::whereNotNull('parent_id')->skip(6)->take(6)->get());
             $view->with('getWishlist', DB::table('wishlists')->where('user_id', Auth::id())->get());
+            $view->with('siteInfo', DB::table('site_info')->first());
         });
 
         view()->composer('user.index', function($view){

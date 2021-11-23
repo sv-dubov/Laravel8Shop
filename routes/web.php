@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\ReportController;
 use App\Http\Controllers\Admin\SeoController;
+use App\Http\Controllers\Admin\SiteInfoController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\FrontController;
@@ -127,6 +128,10 @@ Route::group(['prefix' => 'admin'], function () {
     //SEO settings
     Route::get('/seo', [SeoController::class, 'index'])->name('admin.seo.index');
     Route::post('/seo/update', [SeoController::class, 'update'])->name('admin.seo.update');
+    //Site info
+    Route::get('/site/info', [SiteInfoController::class, 'info'])->name('admin.site.info');
+    Route::post('/site/info/update', [SiteInfoController::class, 'update'])->name('admin.site.update');
+
     //Orders reports
     Route::get('/today/orders', [ReportController::class, 'todayOrders'])->name('admin.today.orders');
     Route::get('/today/delivery', [ReportController::class, 'todayDelivery'])->name('admin.today.delivery');

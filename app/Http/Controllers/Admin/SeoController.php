@@ -19,7 +19,6 @@ class SeoController extends Controller
         return view('admin.seo.index', compact('seo'));
     }
 
-
     public function update(Request $request)
     {
         $id = $request->id;

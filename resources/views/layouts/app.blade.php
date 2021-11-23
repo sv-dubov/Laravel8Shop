@@ -32,8 +32,8 @@
             <div class="container">
                 <div class="row">
                     <div class="col d-flex flex-row">
-                        <div class="top_bar_contact_item"><div class="top_bar_icon"><img src="{{ asset('front/images/phone.png')}}" alt=""></div>+38 068 005 3570</div>
-                        <div class="top_bar_contact_item"><div class="top_bar_icon"><img src="{{ asset('front/images/mail.png')}}" alt=""></div><a href="mailto:fastsales@gmail.com">fastsales@gmail.com</a></div>
+                        <div class="top_bar_contact_item"><div class="top_bar_icon"><img src="{{ asset('front/images/phone.png')}}" alt=""></div>{{ $siteInfo->phone_one }}</div>
+                        <div class="top_bar_contact_item"><div class="top_bar_icon"><img src="{{ asset('front/images/mail.png')}}" alt=""></div><a href="mailto:{{ $siteInfo->email }}">{{ $siteInfo->email }}</a></div>
                         <div class="top_bar_content ml-auto">
                             @guest
                             @else
