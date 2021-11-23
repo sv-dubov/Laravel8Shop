@@ -114,6 +114,7 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/newsletters', [NewsletterController::class, 'index'])->name('newsletters.index');
     Route::get('/newsletters/{id}', [NewsletterController::class, 'destroy'])->name('newsletters.destroy');
     Route::get('/products/all', [ProductController::class, 'index'])->name('products.index');
+    Route::get('/products/stock', [ProductController::class, 'stock'])->name('products.stock');
     Route::get('/products/add', [ProductController::class, 'create'])->name('products.create');
     Route::post('/products/store', [ProductController::class, 'store'])->name('products.store');
     Route::get('/products/show/{id}', [ProductController::class, 'show'])->name('products.show');

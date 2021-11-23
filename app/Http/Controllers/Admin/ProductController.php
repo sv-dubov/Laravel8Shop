@@ -24,6 +24,12 @@ class ProductController extends Controller
         return view('admin.product.index', compact('product'));
     }
 
+    public function stock()
+    {
+        $stock = Product::all();
+        return view('admin.product.stock', compact('stock'));
+    }
+
     public function show($id)
     {
         $product = Product::where('id', $id)->firstOrFail();

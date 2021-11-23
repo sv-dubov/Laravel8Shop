@@ -37,6 +37,7 @@
         <ul class="sl-menu-sub nav flex-column">
             <li class="nav-item"><a href="{{ route('products.index') }}" class="nav-link">All products</a></li>
             <li class="nav-item"><a href="{{ route('products.create') }}" class="nav-link">Add product</a></li>
+            <li class="nav-item"><a href="{{ route('products.stock') }}" class="nav-link">Stock</a></li>
         </ul>
         <a href="#" class="sl-menu-link">
             <div class="sl-menu-item">

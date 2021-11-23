@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Admin\Order;
 use App\Models\Admin\OrderDetail;
+use App\Models\Admin\Product;
 use App\Models\Admin\Shipping;
+use DB;
 
 class OrderController extends Controller
 {
@@ -72,6 +74,11 @@ class OrderController extends Controller
 
     public function deliveryDone($id)
     {
+        $product = OrderDetail::where('order_id', $id)->get();
+        foreach ($product as $row) {
+            Product::where('id', $row->product_id)->update(['product_quantity' => DB::raw('product_quantity-' . $row->quantity)]);
+        }
+
         Order::where('id', $id)->update(['status' => 3]);
         return redirect()->back()->with('status', 'Order was delivered');
     }
