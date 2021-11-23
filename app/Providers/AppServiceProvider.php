@@ -53,6 +53,10 @@ class AppServiceProvider extends ServiceProvider
             $view->with('getOrders', Order::where('user_id', Auth::id())->orderBy('id', 'desc')->get());
         });
 
+        view()->composer('pages.order_return', function($view){
+            $view->with('getOrders', Order::where('user_id', Auth::id())->orderBy('id', 'desc')->get());
+        });
+
         view()->composer('pages.index', function($view){
             $view->with('mainSliderProduct', Product::where('main_slider', '1')->latest()->first());
             $view->with('featuredProducts', Product::where('status', '1')->orderBy('id', 'desc')->limit(8)->get());

@@ -40,6 +40,16 @@
         </ul>
         <a href="#" class="sl-menu-link">
             <div class="sl-menu-item">
+                <i class="menu-item-icon fa fa-money"></i>
+                <span class="menu-item-label">Coupons</span>
+                <i class="menu-item-arrow fa fa-angle-down"></i>
+            </div><!-- menu-item -->
+        </a><!-- sl-menu-link -->
+        <ul class="sl-menu-sub nav flex-column">
+            <li class="nav-item"><a href="{{ route('coupons.index') }}" class="nav-link">Coupons</a></li>
+        </ul>
+        <a href="#" class="sl-menu-link">
+            <div class="sl-menu-item">
                 <i class="menu-item-icon fa fa-shopping-basket"></i>
                 <span class="menu-item-label">Orders</span>
                 <i class="menu-item-arrow fa fa-angle-down"></i>
@@ -54,24 +64,14 @@
         </ul>
         <a href="#" class="sl-menu-link">
             <div class="sl-menu-item">
-                <i class="menu-item-icon fa fa-money"></i>
-                <span class="menu-item-label">Coupons</span>
+                <i class="menu-item-icon fa fa-minus-square"></i>
+                <span class="menu-item-label">Return orders</span>
                 <i class="menu-item-arrow fa fa-angle-down"></i>
             </div><!-- menu-item -->
         </a><!-- sl-menu-link -->
         <ul class="sl-menu-sub nav flex-column">
-            <li class="nav-item"><a href="{{ route('coupons.index') }}" class="nav-link">Coupons</a></li>
-        </ul>
-        <a href="#" class="sl-menu-link">
-            <div class="sl-menu-item">
-                <i class="menu-item-icon icon ion-ios-filing-outline tx-24"></i>
-                <span class="menu-item-label">Others</span>
-                <i class="menu-item-arrow fa fa-angle-down"></i>
-            </div><!-- menu-item -->
-        </a><!-- sl-menu-link -->
-        <ul class="sl-menu-sub nav flex-column">
-            <li class="nav-item"><a href="{{ route('newsletters.index') }}" class="nav-link">Newsletters</a></li>
-            <li class="nav-item"><a href="{{ route('admin.seo.index') }}" class="nav-link">SEO settings</a></li>
+            <li class="nav-item"><a href="{{ route('admin.return.request') }}" class="nav-link">Return requests</a></li>
+            <li class="nav-item"><a href="{{ route('admin.return.success') }}" class="nav-link">Return success</a></li>
         </ul>
         <a href="#" class="sl-menu-link">
             <div class="sl-menu-item">
@@ -88,13 +88,15 @@
         </ul>
         <a href="#" class="sl-menu-link">
             <div class="sl-menu-item">
-                <i class="menu-item-icon fa fa-info-circle"></i>
-                <span class="menu-item-label">Site info</span>
+                <i class="menu-item-icon icon ion-ios-filing-outline tx-24"></i>
+                <span class="menu-item-label">Others</span>
                 <i class="menu-item-arrow fa fa-angle-down"></i>
             </div><!-- menu-item -->
         </a><!-- sl-menu-link -->
         <ul class="sl-menu-sub nav flex-column">
-            <li class="nav-item"><a href="{{ route('admin.site.info') }}" class="nav-link">Change info</a></li>
+            <li class="nav-item"><a href="{{ route('newsletters.index') }}" class="nav-link">Newsletters</a></li>
+            <li class="nav-item"><a href="{{ route('admin.seo.index') }}" class="nav-link">SEO settings</a></li>
+            <li class="nav-item"><a href="{{ route('admin.site.info') }}" class="nav-link">Site info</a></li>
         </ul>
     </div><!-- sl-sideleft-menu -->
     <br>

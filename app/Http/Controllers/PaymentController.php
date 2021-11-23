@@ -111,4 +111,16 @@ class PaymentController extends Controller
         }
         return redirect()->to('/')->with('status', 'Order was completed successfully');
     }
+
+    public function successOrdersList()
+    {
+        $order = DB::table('orders')->where('user_id', Auth::id())->where('status', 3)->orderBy('id', 'desc')->limit(5)->get();
+        return view('pages.order_return', compact('order'));
+    }
+
+    public function returnOrderRequest($id)
+    {
+        DB::table('orders')->where('id', $id)->update(['return_order' => 1]);
+        return redirect()->back()->with('status', 'Order was requested for return');
+    }
 }

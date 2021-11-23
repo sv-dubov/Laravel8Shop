@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\NewsletterController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\ReportController;
+use App\Http\Controllers\Admin\ReturnController;
 use App\Http\Controllers\Admin\SeoController;
 use App\Http\Controllers\Admin\SiteInfoController;
 use App\Http\Controllers\AdminController;
@@ -78,6 +79,10 @@ Route::get('/order/view/{id}', [\App\Http\Controllers\ProductController::class, 
 //Order tracking
 Route::post('/order/tracking', [FrontController::class, 'orderTracking'])->name('user.order.tracking');
 
+//Order return
+Route::get('user/orders/success', [PaymentController::class, 'successOrdersList'])->name('user.orders.success');
+Route::get('user/orders/return/{id}', [PaymentController::class, 'returnOrderRequest']);
+
 //Products list page
 Route::get('products/category/{id}', [\App\Http\Controllers\ProductController::class, 'productList']);
 
@@ -125,13 +130,16 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/payment/cancel/{id}', [OrderController::class, 'paymentCancel']);
     Route::get('/delivery/process/{id}', [OrderController::class, 'deliveryProcess']);
     Route::get('/delivery/done/{id}', [OrderController::class, 'deliveryDone']);
+    //Return orders
+    Route::get('/return/request', [ReturnController::class, 'returnRequest'])->name('admin.return.request');
+    Route::get('/return/approve/{id}', [ReturnController::class, 'returnApprove']);
+    Route::get('/return/success', [ReturnController::class, 'returnSuccess'])->name('admin.return.success');
     //SEO settings
     Route::get('/seo', [SeoController::class, 'index'])->name('admin.seo.index');
     Route::post('/seo/update', [SeoController::class, 'update'])->name('admin.seo.update');
     //Site info
     Route::get('/site/info', [SiteInfoController::class, 'info'])->name('admin.site.info');
     Route::post('/site/info/update', [SiteInfoController::class, 'update'])->name('admin.site.update');
-
     //Orders reports
     Route::get('/today/orders', [ReportController::class, 'todayOrders'])->name('admin.today.orders');
     Route::get('/today/delivery', [ReportController::class, 'todayDelivery'])->name('admin.today.delivery');
