@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\CouponController;
+use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\NewsletterController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController;
@@ -91,9 +92,11 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin:admin']], function ()
     Route::post('/login', [AdminController::class, 'store'])->name('admin.login');
 });
 
-Route::middleware(['auth:sanctum,admin', 'verified'])->get('/admin/dashboard', function () {
+/*Route::middleware(['auth:sanctum,admin', 'verified'])->get('/admin/dashboard', function () {
     return view('admin.index');
-})->name('admin.dashboard');
+})->name('admin.dashboard');*/
+
+Route::middleware(['auth:sanctum,admin', 'verified'])->get('/admin/dashboard', [HomeController::class, 'index'])->name('admin.dashboard');
 
 Route::middleware(['auth:sanctum,web', 'verified'])->get('/dashboard', function () {
     return view('user.index');
