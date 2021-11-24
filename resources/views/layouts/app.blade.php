@@ -164,7 +164,7 @@
                 </div>
             </div>
         </div>
-
+    </header>
         @yield('content')
 
     @include('layouts.footer')

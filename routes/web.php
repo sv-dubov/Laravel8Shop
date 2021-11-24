@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\SeoController;
 use App\Http\Controllers\Admin\SiteInfoController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\MainAdminController;
 use App\Http\Controllers\MainUserController;
@@ -36,9 +37,16 @@ Route::get('/', function () {
     return view('pages.index');
 });
 
+Route::middleware(['auth:sanctum,admin', 'verified'])->get('/admin/dashboard', [HomeController::class, 'index'])->name('admin.dashboard');
+
+Route::middleware(['auth:sanctum,web', 'verified'])->get('/dashboard', function () {
+    return view('user.index');
+})->name('dashboard');
+
 Route::get('/email/verify', function () {
     return view('auth.verify-email');
 })->middleware('auth')->name('verification.notice');
+
 Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
     $request->fulfill();
     return redirect('/dashboard');
@@ -46,6 +54,10 @@ Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $requ
 
 //Newsletter Front
 Route::post('newsletter/store', [FrontController::class, 'storeNewsletter'])->name('newsletter.store');
+
+//Contact page
+Route::get('contact/page', [ContactController::class, 'contact'])->name('contact.page');
+Route::post('contact/form', [ContactController::class, 'contactForm'])->name('contact.form');
 
 //Add Wishlist
 Route::get('add/wishlist/{id}', [WishlistController::class, 'addWishlist']);
@@ -92,21 +104,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin:admin']], function ()
     Route::post('/login', [AdminController::class, 'store'])->name('admin.login');
 });
 
-/*Route::middleware(['auth:sanctum,admin', 'verified'])->get('/admin/dashboard', function () {
-    return view('admin.index');
-})->name('admin.dashboard');*/
-
-Route::middleware(['auth:sanctum,admin', 'verified'])->get('/admin/dashboard', [HomeController::class, 'index'])->name('admin.dashboard');
-
-Route::middleware(['auth:sanctum,web', 'verified'])->get('/dashboard', function () {
-    return view('user.index');
-})->name('dashboard');
-
-Route::get('/admin/logout', [AdminController::class, 'destroy'])->name('admin.logout');
-Route::get('/admin/profile/{id}', [MainAdminController::class, 'profile'])->name('admin.profile');
-Route::get('/admin/profile/edit/{id}', [MainAdminController::class, 'edit'])->name('admin.profile.edit');
-Route::post('/admin/profile/store/{id}', [MainAdminController::class, 'store'])->name('admin.profile.store');
-
 Route::group(['prefix' => 'admin'], function () {
     Route::resource('/categories', CategoryController::class);
     Route::resource('/brands', BrandController::class)->except(['create', 'show']);
@@ -138,12 +135,6 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/return/request', [ReturnController::class, 'returnRequest'])->name('admin.return.request');
     Route::get('/return/approve/{id}', [ReturnController::class, 'returnApprove']);
     Route::get('/return/success', [ReturnController::class, 'returnSuccess'])->name('admin.return.success');
-    //SEO settings
-    Route::get('/seo', [SeoController::class, 'index'])->name('admin.seo.index');
-    Route::post('/seo/update', [SeoController::class, 'update'])->name('admin.seo.update');
-    //Site info
-    Route::get('/site/info', [SiteInfoController::class, 'info'])->name('admin.site.info');
-    Route::post('/site/info/update', [SiteInfoController::class, 'update'])->name('admin.site.update');
     //Orders reports
     Route::get('/today/orders', [ReportController::class, 'todayOrders'])->name('admin.today.orders');
     Route::get('/today/delivery', [ReportController::class, 'todayDelivery'])->name('admin.today.delivery');
@@ -152,6 +143,23 @@ Route::group(['prefix' => 'admin'], function () {
     Route::post('/search/report/by/year', [ReportController::class, 'searchByYear'])->name('admin.search.by-year');
     Route::post('/search/report/by/month', [ReportController::class, 'searchByMonth'])->name('admin.search.by-month');
     Route::post('/search/report/by/date', [ReportController::class, 'searchByDate'])->name('admin.search.by-date');
+    //SEO settings
+    Route::get('/seo', [SeoController::class, 'index'])->name('admin.seo.index');
+    Route::post('/seo/update', [SeoController::class, 'update'])->name('admin.seo.update');
+    //Site info
+    Route::get('/site/info', [SiteInfoController::class, 'info'])->name('admin.site.info');
+    Route::post('/site/info/update', [SiteInfoController::class, 'update'])->name('admin.site.update');
+    //Contact messages
+    Route::get('/contact/messages/all', [\App\Http\Controllers\Admin\ContactController::class, 'index'])->name('admin.contact.index');
+    Route::get('/contact/messages/unread', [\App\Http\Controllers\Admin\ContactController::class, 'unread'])->name('admin.contact.unread');
+    Route::get('/contact/message/{id}', [\App\Http\Controllers\Admin\ContactController::class, 'show'])->name('admin.contact.show');
+    Route::get('/contact/message/{id}/destroy', [\App\Http\Controllers\Admin\ContactController::class, 'destroy'])->name('admin.contact.destroy');
+    Route::get('/contact/message/status/{id}', [\App\Http\Controllers\Admin\ContactController::class, 'status'])->name('admin.contact.status');
+    //Admin profile
+    Route::get('/logout', [AdminController::class, 'destroy'])->name('admin.logout');
+    Route::get('/profile/{id}', [MainAdminController::class, 'profile'])->name('admin.profile');
+    Route::get('/profile/edit/{id}', [MainAdminController::class, 'edit'])->name('admin.profile.edit');
+    Route::post('/profile/store/{id}', [MainAdminController::class, 'store'])->name('admin.profile.store');
 });
 
 Route::get('/user/logout', [MainUserController::class, 'logout'])->name('user.logout');

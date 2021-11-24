@@ -49,6 +49,10 @@ class AppServiceProvider extends ServiceProvider
             $view->with('siteInfo', DB::table('site_info')->first());
         });
 
+        view()->composer('pages.contact', function($view){
+            $view->with('info', DB::table('site_info')->first());
+        });
+
         view()->composer('user.index', function($view){
             $view->with('getOrders', Order::where('user_id', Auth::id())->orderBy('id', 'desc')->get());
         });

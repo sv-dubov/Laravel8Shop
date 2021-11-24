@@ -32,7 +32,7 @@
 
                     <div class="main_nav_menu ml-auto">
                         <ul class="standard_dropdown main_nav_dropdown">
-                            <li><a href="#">Home<i class="fas fa-chevron-down"></i></a></li>
+                            <li><a href="/">Home<i class="fas fa-chevron-down"></i></a></li>
                             <li class="hassubs">
                                 <a href="#">Super Deals<i class="fas fa-chevron-down"></i></a>
                                 <ul>
@@ -70,15 +70,12 @@
                                 <ul>
                                     <li><a href="shop.html">Shop<i class="fas fa-chevron-down"></i></a></li>
                                     <li><a href="product.html">Product<i class="fas fa-chevron-down"></i></a></li>
-                                    <li><a href="blog.html">Blog<i class="fas fa-chevron-down"></i></a></li>
-                                    <li><a href="blog_single.html">Blog Post<i class="fas fa-chevron-down"></i></a></li>
                                     <li><a href="regular.html">Regular Post<i class="fas fa-chevron-down"></i></a></li>
                                     <li><a href="cart.html">Cart<i class="fas fa-chevron-down"></i></a></li>
                                     <li><a href="contact.html">Contact<i class="fas fa-chevron-down"></i></a></li>
                                 </ul>
                             </li>
-                            <li><a href="blog.html">Blog<i class="fas fa-chevron-down"></i></a></li>
-                            <li><a href="contact.html">Contact<i class="fas fa-chevron-down"></i></a></li>
+                            <li><a href="{{ route('contact.page') }}">Contact<i class="fas fa-chevron-down"></i></a></li>
                         </ul>
                     </div>
 
@@ -100,7 +97,7 @@
 
 <!-- Menu -->
 
-<div class="page_menu">
+{{--<div class="page_menu">
     <div class="container">
         <div class="row">
             <div class="col">
@@ -179,6 +176,6 @@
             </div>
         </div>
     </div>
-</div>
+</div>--}}
 
-</header>
+{{--</header>--}}
