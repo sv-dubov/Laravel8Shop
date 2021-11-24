@@ -63,10 +63,19 @@ class ProductController extends Controller
         return view('pages.products_list', compact('products', 'categories', 'category', 'brands'));
     }
 
-
     public function viewOrderUser($id)
     {
         $details = OrderDetail::where('order_id', $id)->get();
         return view('user.view_order', compact('details'));
+    }
+
+    public function productSearch(Request $request)
+    {
+        $request->validate([
+            'search' => 'required'
+        ]);
+        $s = $request->search;
+        $products = Product::where('product_name', 'LIKE', "%{$s}%")->where('status', 1)->orderBy('created_at', 'desc')->paginate(10);
+        return view('pages.search', compact('products', 's'));
     }
 }

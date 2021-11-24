@@ -99,6 +99,9 @@ Route::get('user/orders/return/{id}', [PaymentController::class, 'returnOrderReq
 //Products list page
 Route::get('products/category/{id}', [\App\Http\Controllers\ProductController::class, 'productList']);
 
+//Product search
+Route::post('product/search', [\App\Http\Controllers\ProductController::class, 'productSearch'])->name('product.search');
+
 Route::group(['prefix' => 'admin', 'middleware' => ['admin:admin']], function () {
     Route::get('/login', [AdminController::class, 'loginForm']);
     Route::post('/login', [AdminController::class, 'store'])->name('admin.login');

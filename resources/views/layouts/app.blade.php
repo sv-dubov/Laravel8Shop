@@ -111,8 +111,9 @@
                         <div class="header_search">
                             <div class="header_search_content">
                                 <div class="header_search_form_container">
-                                    <form action="#" class="header_search_form clearfix">
-                                        <input type="search" required="required" class="header_search_input" placeholder="Search for products...">
+                                    <form class="header_search_form clearfix" action="{{ route('product.search') }}" method="post">
+                                        @csrf
+                                        <input class="header_search_input" type="search" name="search" placeholder="Search for products..." required>
                                         <div class="custom_dropdown">
                                             <div class="custom_dropdown_list">
                                                 <span class="custom_dropdown_placeholder clc">All Categories</span>
