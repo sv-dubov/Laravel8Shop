@@ -14,7 +14,7 @@
                         <form action="{{ isset($guard) ? url($guard.'/login') :  route('login') }}" id="contact_form" method="post">
                             @csrf
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Email</label>
+                                <label for="exampleInputEmail1">E-mail</label>
                                 <input type="text" class="form-control @error('email') is-invalid @enderror"
                                        name="email" value="{{ old('email') }}" aria-describedby="emailHelp" required autofocus>
                                 @error('email')
@@ -33,16 +33,15 @@
                                 </span>
                                 @enderror
                             </div>
-                            <div class="contact_form_button">
+                            <div class="contact_form_button text-center">
                                 <button type="submit" class="btn btn-info">Login</button>
                             </div>
                         </form>
                         <br>
                         <a href="{{ route('password.request') }}">I forgot my password</a><br><br>
-                        <button type="submit" class="btn btn-primary btn-block"><i class="fab fa-facebook-square"></i>
-                            Login with Facebook
-                        </button>
-                        <a href="{{ url('/auth/redirect/google') }}" class="btn btn-danger btn-block"><i
+                        <a href="{{ url('auth/facebook') }}" class="btn btn-primary btn-block"><i
+                                class="fab fa-facebook-square"></i> Login with Facebook </a>
+                        <a href="{{ url('auth/google') }}" class="btn btn-danger btn-block"><i
                                 class="fab fa-google"></i> Login with Google </a>
                     </div>
                 </div>
@@ -55,25 +54,25 @@
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Name</label>
                                 <input type="text" class="form-control" aria-describedby="emailHelp"
-                                       placeholder="Enter Your Name " name="name" required>
+                                       placeholder="Enter your name " name="name" required>
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Email</label>
+                                <label for="exampleInputEmail1">E-mail</label>
                                 <input type="email" class="form-control @error('email') is-invalid @enderror"
                                        name="email" value="{{ old('email') }}" aria-describedby="emailHelp"
-                                       placeholder="Enter Your E-mail " required>
+                                       placeholder="Enter your e-mail" required>
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Password</label>
                                 <input type="password" class="form-control" aria-describedby="emailHelp"
-                                       placeholder="Enter Your Password " name="password" required>
+                                       placeholder="Enter your password" name="password" required>
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Confirm Password</label>
                                 <input type="password" class="form-control" aria-describedby="emailHelp"
-                                       placeholder="Re-Type Password " name="password_confirmation" required>
+                                       placeholder="Re-type password" name="password_confirmation" required>
                             </div>
-                            <div class="contact_form_button">
+                            <div class="contact_form_button text-center">
                                 <button type="submit" class="btn btn-info">Sign Up</button>
                             </div>
                         </form>

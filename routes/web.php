@@ -14,7 +14,9 @@ use App\Http\Controllers\Admin\SiteInfoController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\FacebookSocialiteController;
 use App\Http\Controllers\FrontController;
+use App\Http\Controllers\GoogleSocialiteController;
 use App\Http\Controllers\MainAdminController;
 use App\Http\Controllers\MainUserController;
 use App\Http\Controllers\PaymentController;
@@ -51,6 +53,13 @@ Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $requ
     $request->fulfill();
     return redirect('/dashboard');
 })->middleware(['auth', 'signed'])->name('verification.verify');
+
+//Google socialite
+Route::get('auth/google', [GoogleSocialiteController::class, 'redirectToGoogle']);
+Route::get('callback/google', [GoogleSocialiteController::class, 'handleCallback']);
+//Facebook socialite (not works because of https needed)
+Route::get('auth/facebook', [FacebookSocialiteController::class, 'redirectFacebook']);
+Route::get('callback/facebook', [FacebookSocialiteController::class, 'facebookCallback']);
 
 //Newsletter Front
 Route::post('newsletter/store', [FrontController::class, 'storeNewsletter'])->name('newsletter.store');
