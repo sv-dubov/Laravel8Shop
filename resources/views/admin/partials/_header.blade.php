@@ -9,7 +9,7 @@
             <div class="dropdown">
                 <a href="" class="nav-link nav-link-profile" data-toggle="dropdown">
                     <span class="logged-name">{{$admin->first()->name}}</span>
-                    <img src="../img/img3.jpg" class="wd-32 rounded-circle" alt="">
+                    <img src="{{ asset ('admin/images/char_1.png') }}" class="wd-32 rounded-circle" alt="">
                 </a>
                 <div class="dropdown-menu dropdown-menu-header wd-200">
                     <ul class="list-unstyled user-profile-nav">

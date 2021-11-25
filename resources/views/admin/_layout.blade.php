@@ -59,6 +59,7 @@
 
 <script>
     $("document").ready(function(){
+        $('#datatable1').DataTable();
         setTimeout(function(){
             $("div.alert").remove();
         }, 6000 );
@@ -103,7 +104,6 @@
 <script>
     $(function () {
         'use strict';
-
         $('#datatable1').DataTable({
             responsive: true,
             language: {
@@ -112,16 +112,13 @@
                 lengthMenu: '_MENU_ items/page',
             }
         });
-
         $('#datatable2').DataTable({
             bLengthChange: false,
             searching: false,
             responsive: true
         });
-
         // Select2
         $('.dataTables_length select').select2({minimumResultsForSearch: Infinity});
-
     });
 </script>
 
