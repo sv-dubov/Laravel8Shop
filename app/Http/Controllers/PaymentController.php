@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\InvoiceMail;
 use Auth;
 use Carbon\Carbon;
 use DB;
 use Cart;
 use Illuminate\Http\Request;
+use Mail;
 use Session;
 
 class PaymentController extends Controller
@@ -37,6 +39,7 @@ class PaymentController extends Controller
 
     public function stripeCharge(Request $request)
     {
+        $email = Auth::user()->email;
         $total = $request->total;
         // Set your secret key: remember to change this to your live secret key in production
         // See your keys here: https://dashboard.stripe.com/account/apikeys
@@ -76,6 +79,9 @@ class PaymentController extends Controller
         $data['created_at'] = Carbon::now();
         $data['updated_at'] = Carbon::now();
         $order_id = DB::table('orders')->insertGetId($data);
+
+        //Mail send to user for Invoice
+        Mail::to($email)->send(new invoiceMail($data));
 
         //Insert shippings table
         $shipping = array();
