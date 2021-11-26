@@ -123,6 +123,7 @@ Route::group(['prefix' => 'admin'], function () {
     Route::resource('/coupons', CouponController::class)->except(['create', 'show']);
     Route::get('/newsletters', [NewsletterController::class, 'index'])->name('newsletters.index');
     Route::get('/newsletters/{id}', [NewsletterController::class, 'destroy'])->name('newsletters.destroy');
+    Route::delete('/newsletters/delete/selected', [NewsletterController::class, 'deleteSelected'])->name('newsletters.delete.selected');
     Route::get('/products/all', [ProductController::class, 'index'])->name('products.index');
     Route::get('/products/stock', [ProductController::class, 'stock'])->name('products.stock');
     Route::get('/products/add', [ProductController::class, 'create'])->name('products.create');

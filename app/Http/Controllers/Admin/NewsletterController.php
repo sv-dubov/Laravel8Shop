@@ -19,4 +19,11 @@ class NewsletterController extends Controller
         DB::table('newsletters')->where('id', $id)->delete();
         return redirect()->route('newsletters.index')->with('status', 'Subscription was deleted successfully!');
     }
+
+    public function deleteSelected(Request $request)
+    {
+        $ids = $request->get('ids');
+        DB::delete('delete from newsletters where id in ('.implode(",", $ids).')');
+        return redirect()->route('newsletters.index')->with('status', 'Selected subscriptions was deleted successfully!');
+    }
 }

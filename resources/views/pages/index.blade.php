@@ -1450,16 +1450,17 @@
                     <div class="newsletter_container d-flex flex-lg-row flex-column align-items-lg-center align-items-center justify-content-lg-start justify-content-center">
                         <div class="newsletter_title_container">
                             <div class="newsletter_icon"><img src="{{ asset ('front/images/send.png') }}" alt=""></div>
-                            <div class="newsletter_title">Sign up for Newsletter</div>
-                            <div class="newsletter_text"><p>...and receive %20 coupon for first shopping.</p></div>
+                            <div class="newsletter_title">Sign up for our Newsletter</div>
                         </div>
                         <div class="newsletter_content clearfix">
                             <form action="{{ route('newsletter.store') }}" method="post" class="newsletter_form">
                                 @csrf
                                 <input type="email" class="newsletter_input" name="email" required="required" placeholder="Enter your email address">
+                                @if ($errors->has('email'))
+                                    <span class="text-danger">{{ $errors->first('email') }}</span>
+                                @endif
                                 <button class="newsletter_button" type="submit">Subscribe</button>
                             </form>
-                            <div class="newsletter_unsubscribe_link"><a href="#">unsubscribe</a></div>
                         </div>
                     </div>
                 </div>
