@@ -88,47 +88,23 @@
                 <div class="col-lg-5" style="border: 1px solid grey; padding: 20px; border-radius: 25px;">
                     <div class="contact_form_container">
                         <div class="contact_form_title text-center">Shipping address</div>
-                        <form action="{{ route('payment.process') }}" id="contact_form" method="post">
+                        <form action="{{ route('oncash.charge') }}" id="payment-form" method="post">
                             @csrf
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Full name</label>
-                                <input type="text" class="form-control" placeholder="Enter your full name" name="name" required>
+                            <div class="form-row">
+                                <p class="text-center">Cash on delivery</p>
                             </div>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Phone</label>
-                                <input type="text" class="form-control" placeholder="Enter your phone" name="phone" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Email</label>
-                                <input type="email" class="form-control" placeholder="Enter your e-mail" name="email" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Address</label>
-                                <input type="text" class="form-control" placeholder="Enter your address" name="address" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">City</label>
-                                <input type="text" class="form-control" placeholder="Enter your city" name="city" required>
-                            </div>
-                            <div class="contact_form_title text-center">Payment by</div>
-                            <div class="form-group">
-                                <ul class="logos_list">
-                                    <li>
-                                        <input type="radio" name="payment" value="stripe">
-                                        <img src="{{ asset('front/images/mastercard.png') }}" style="width: 100px; height: 60px;">
-                                    </li>
-                                    <li>
-                                        <input type="radio" name="payment" value="paypal">
-                                        <img src="{{ asset('front/images/paypal.png') }}" style="width: 100px; height: 60px;">
-                                    </li>
-                                    <li>
-                                        <input type="radio" name="payment" value="oncash">
-                                        <img src="{{ asset('front/images/delivery.png') }}" style="width: 100px; height: 60px;">
-                                    </li>
-                                </ul>
-                            </div>
+                            <br>
+                            <input type="hidden" name="shipping" value="{{ $settings->shipping_charge }} ">
+                            <input type="hidden" name="vat" value="{{ $settings->vat }} ">
+                            <input type="hidden" name="total" value="{{ Cart::Subtotal() + $settings->shipping_charge + $settings->vat }} ">
+                            <input type="hidden" name="ship_name" value="{{ $data['name'] }} ">
+                            <input type="hidden" name="ship_phone" value="{{ $data['phone'] }} ">
+                            <input type="hidden" name="ship_email" value="{{ $data['email'] }} ">
+                            <input type="hidden" name="ship_address" value="{{ $data['address'] }} ">
+                            <input type="hidden" name="ship_city" value="{{ $data['city'] }} ">
+                            <input type="hidden" name="payment_type" value="{{ $data['payment'] }} ">
                             <div class="contact_form_button text-center">
-                                <button type="submit" class="btn btn-info">Pay order</button>
+                                <button type="submit" class="btn btn-info">Finish order</button>
                             </div>
                         </form>
                     </div>

@@ -76,5 +76,10 @@ class AppServiceProvider extends ServiceProvider
             $view->with('cart', Cart::Content());
             $view->with('settings', DB::table('settings')->first());
         });
+
+        view()->composer('pages.payment.oncash', function($view){
+            $view->with('cart', Cart::Content());
+            $view->with('settings', DB::table('settings')->first());
+        });
     }
 }

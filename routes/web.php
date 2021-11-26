@@ -94,6 +94,7 @@ Route::post('/cart/product/add/{id}', [\App\Http\Controllers\ProductController::
 Route::get('user/payment', [CartController::class, 'paymentIndex'])->name('payment.index');
 Route::post('user/payment/process', [PaymentController::class, 'payment'])->name('payment.process');
 Route::post('user/stripe/charge', [PaymentController::class, 'stripeCharge'])->name('stripe.charge');
+Route::post('user/oncash/charge', [PaymentController::class, 'onCashCharge'])->name('oncash.charge');
 
 //User view order details
 Route::get('/order/view/{id}', [\App\Http\Controllers\ProductController::class, 'viewOrderUser'])->name('user.view.order');

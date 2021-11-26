@@ -30,10 +30,10 @@ class PaymentController extends Controller
             return view('pages.payment.stripe', compact('data', 'cart', 'settings'));
         } elseif ($request->payment == 'paypal') {
             # code...
-        } elseif ($request->payment == 'ideal') {
-            # code...
+        } elseif ($request->payment == 'oncash') {
+            return view('pages.payment.oncash', compact('data'));
         } else {
-            echo "Cash on delivery";
+            echo "Else method";
         }
     }
 
@@ -82,6 +82,63 @@ class PaymentController extends Controller
 
         //Mail send to user for Invoice
         Mail::to($email)->send(new invoiceMail($data));
+
+        //Insert shippings table
+        $shipping = array();
+        $shipping['order_id'] = $order_id;
+        $shipping['ship_name'] = $request->ship_name;
+        $shipping['ship_phone'] = $request->ship_phone;
+        $shipping['ship_email'] = $request->ship_email;
+        $shipping['ship_address'] = $request->ship_address;
+        $shipping['ship_city'] = $request->ship_city;
+        $shipping['created_at'] = Carbon::now();
+        $shipping['updated_at'] = Carbon::now();
+        DB::table('shippings')->insert($shipping);
+
+        //Insert order details table
+        $content = Cart::content();
+        $details = array();
+        foreach ($content as $row) {
+            $details['order_id'] = $order_id;
+            $details['product_id'] = $row->id;
+            $details['product_name'] = $row->name;
+            $details['color'] = $row->options->color;
+            $details['size'] = $row->options->size;
+            $details['quantity'] = $row->qty;
+            $details['single_price'] = $row->price;
+            $details['total_price'] = $row->qty * $row->price;
+            $details['created_at'] = Carbon::now();
+            $details['updated_at'] = Carbon::now();
+            DB::table('order_details')->insert($details);
+        }
+        Cart::destroy();
+        if (Session::has('coupon')) {
+            Session::forget('coupon');
+        }
+        return redirect()->to('/')->with('status', 'Order was completed successfully');
+    }
+
+    public function onCashCharge(Request $request)
+    {
+        $data = array();
+        $data['user_id'] = Auth::id();
+        $data['shipping'] = $request->shipping;
+        $data['vat'] = $request->vat;
+        $data['total'] = $request->total;
+        $data['payment_type'] = $request->payment_type;
+        $data['status_code'] = mt_rand(100000,999999);
+        if (Session::has('coupon')) {
+            $data['subtotal'] = Session::get('coupon')['balance'];
+        } else {
+            $data['subtotal'] = Cart::Subtotal();
+        }
+        $data['status'] = 0;
+        $data['date'] = date('d-m-y');
+        $data['month'] = date('F');
+        $data['year'] = date('Y');
+        $data['created_at'] = Carbon::now();
+        $data['updated_at'] = Carbon::now();
+        $order_id = DB::table('orders')->insertGetId($data);
 
         //Insert shippings table
         $shipping = array();
